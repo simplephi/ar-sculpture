@@ -28,8 +28,7 @@
     if (!!results.objectDetections) {
       for (const detectedObject of results.objectDetections) {
         // Reformat keypoint information as landmarks, for easy drawing.
-        const landmarks: mpObjectron.Point2D[] =
-            detectedObject.keypoints.map(x => x.point2d);
+        const landmarks: mpObjectron.Point2D[] = detectedObject.keypoints.map(x => x.point2d);
         // Draw bounding box.
         drawingUtils.drawConnectors(canvasCtx, landmarks,
             mpObjectron.BOX_CONNECTIONS, {color: '#FF0000'});
@@ -58,6 +57,6 @@
   });
   camera.start();
   </script>
-  
+
 </body>
 </html>
