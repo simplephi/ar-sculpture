@@ -28,14 +28,33 @@ AFRAME.registerComponent('markers_start',{
 					var sceneEl = document.querySelector('a-scene');
 
 					//list of the markers
-					for(var i=1; i<15; i++)
+					// for(var i=1; i<15; i++)
+					// {
+					// 	var url="../assets/markers-new/pattern-"+i+".patt";
+					// 	markersURLArray.push(url);
+					// 	markersNameArray.push('Marker_'+i);
+					// }
+          //
+					// for(var k=0; k<14; k++)
+					// {
+					// 		var markerEl = document.createElement('a-marker');
+					// 		// var markerEl = document.createElement('a-marker-camera');
+					// 		markerEl.setAttribute('type','pattern');
+					// 		markerEl.setAttribute('url',markersURLArray[k]);
+					// 		markerEl.setAttribute('id',markersNameArray[k]);
+          //
+					// 		markerEl.setAttribute('registerevents','');
+					// 		sceneEl.appendChild(markerEl);
+          //
+	        // }
+					for(var i=1; i<9; i++)
 					{
-						var url="../assets/markers-new/pattern-"+i+".patt";
+						var url="../assets/markers/pattern-"+i+".patt";
 						markersURLArray.push(url);
 						markersNameArray.push('Marker_'+i);
 					}
 
-					for(var k=0; k<14; k++)
+					for(var k=0; k<8; k++)
 					{
 							var markerEl = document.createElement('a-marker');
 							// var markerEl = document.createElement('a-marker-camera');
@@ -43,11 +62,10 @@ AFRAME.registerComponent('markers_start',{
 							markerEl.setAttribute('url',markersURLArray[k]);
 							markerEl.setAttribute('id',markersNameArray[k]);
 
-
 							markerEl.setAttribute('registerevents','');
 							sceneEl.appendChild(markerEl);
 
-				}
+	        }
 
 	}
 
