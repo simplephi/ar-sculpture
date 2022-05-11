@@ -47,14 +47,14 @@ AFRAME.registerComponent('markers_start',{
 					// 		sceneEl.appendChild(markerEl);
           //
 	        // }
-					for(var i=1; i<9; i++)
+					for(var i=1; i<10; i++)
 					{
 						var url="../assets/markers/pattern-"+i+".patt";
 						markersURLArray.push(url);
 						markersNameArray.push('Marker_'+i);
 					}
 
-					for(var k=0; k<8; k++)
+					for(var k=0; k<9; k++)
 					{
 							var markerEl = document.createElement('a-marker');
 							// var markerEl = document.createElement('a-marker-camera');
