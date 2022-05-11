@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tfjs</title>
+</head>
+<body>
+    <video id="main-stream-video" width="480" height="360"></video>
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        model = null;
+
+        function preprocessImage(image){
+            let tensor = tf.browser.fromPixels(image);
+            return tensor;
+        }
+
+        function captureWebcam() {
+            var canvas    = document.createElement("canvas");
+            var context   = canvas.getContext('2d');
+            canvas.width  = video.width;
+            canvas.height = video.height;
+        
+            context.drawImage(video, 0, 0, video.width, video.height);
+            tensor_image = preprocessImage(canvas);
+        
+            return tensor_image;
+        }
+
+        async function predict() {
+            let tensor = captureWebcam();
+
+            // const options = {score: 0.5, iou: 0.5, topk: 20};
+            const predictions = await model.detect(tensor);
+            for (let prediction of predictions) {
+                if (prediction.score > 0.99) {
+                    console.log(prediction.box);
+                }
+            }
+            // Show the resulting object on the page.
+            // const pre = document.createElement('pre');
+            // pre.textContent = JSON.stringify(predictions, null, 2);
+            // document.body.append(pre);
+        }
+
+        tf.automl.loadObjectDetection('model.json').then(function (loadedModel) {
+            model = loadedModel;
+
+            video = $('#main-stream-video').get(0);
+            vendorUrl = window.URL || window.webkitURL;
+
+            return navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: false
+            }).then(function(stream) {
+                localStream = stream;
+                video.srcObject = stream;
+                video.play();
+                setInterval(predict, 1000/10);
+            }).catch(function(error) {
+                alert("Something wrong with webcam!");
+            });
+        });
+    </script>
+</body>
+</html>
