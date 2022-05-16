@@ -24,10 +24,10 @@
             var context   = canvas.getContext('2d');
             canvas.width  = video.width;
             canvas.height = video.height;
-        
+
             context.drawImage(video, 0, 0, video.width, video.height);
             tensor_image = preprocessImage(canvas);
-        
+
             return tensor_image;
         }
 
@@ -47,7 +47,7 @@
             // document.body.append(pre);
         }
 
-        tf.automl.loadObjectDetection('model.json').then(function (loadedModel) {
+        tf.automl.loadObjectDetection('https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/goldwatch-tensorflow-js/model.json').then(function (loadedModel) {
             model = loadedModel;
 
             video = $('#main-stream-video').get(0);
