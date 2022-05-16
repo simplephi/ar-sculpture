@@ -7,7 +7,7 @@
     <title>tfjs</title>
 </head>
 <body>
-    <video id="main-stream-video" width="480" height="360"></video>
+    <video id="main-stream-video" width="100%" height="100%"></video>
     <script src="https://unpkg.com/@tensorflow/tfjs"></script>
     <script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -38,7 +38,7 @@
             const predictions = await model.detect(tensor);
             for (let prediction of predictions) {
                 console.log(prediction.score);
-                if (prediction.score > 0.60) {
+                if (prediction.score > 0.99) {
                     console.log(prediction.box);
                 }
             }
