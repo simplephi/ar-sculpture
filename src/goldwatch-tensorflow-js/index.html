@@ -37,15 +37,42 @@
             // const options = {score: 0.5, iou: 0.5, topk: 20};
             const predictions = await model.detect(tensor);
             for (let prediction of predictions) {
+
+                // console.log(prediction.score);
+                // if (prediction.score > 0.70) {
+                //     console.log(prediction.box);
+                //
+                // }
+
                 console.log(prediction.score);
-                if (prediction.score > 0.90) {
-                    console.log(prediction.box);
+                
+                if (prediction.score > 0.70) {
+                  const p = document.createElement('p');
+                  p.innerText = prediction[n].class  + ' - with '
+                      + Math.round(parseFloat(prediction[n].score) * 100)
+                      + '% confidence.';
+                  p.style = 'margin-left: ' + prediction[n].bbox[0] + 'px; margin-top: '
+                      + (prediction[n].bbox[1] - 10) + 'px; width: '
+                      + (prediction[n].bbox[2] - 10) + 'px; top: 0; left: 0;';
+
+                  const highlighter = document.createElement('div');
+                  highlighter.setAttribute('class', 'highlighter');
+                  highlighter.style = 'left: ' + prediction[n].bbox[0] + 'px; top: '
+                      + prediction[n].bbox[1] + 'px; width: '
+                      + prediction[n].bbox[2] + 'px; height: '
+                      + prediction[n].bbox[3] + 'px;';
+
+                  liveView.appendChild(highlighter);
+                  liveView.appendChild(p);
+                  children.push(highlighter);
+                  children.push(p);
+
                 }
             }
-            Show the resulting object on the page.
-            const pre = document.createElement('pre');
-            pre.textContent = JSON.stringify(predictions, null, 2);
-            document.body.append(pre);
+            // Show the resulting object on the page.
+            // const pre = document.createElement('pre');
+            // pre.textContent = JSON.stringify(predictions, null, 2);
+            // document.body.append(pre);
         }
 
         tf.automl.loadObjectDetection('https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/goldwatch-tensorflow-js/model.json').then(function (loadedModel) {
