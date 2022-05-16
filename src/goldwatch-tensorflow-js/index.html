@@ -38,7 +38,7 @@
             const predictions = await model.detect(tensor);
             for (let prediction of predictions) {
                 console.log(prediction.score);
-                if (prediction.score > 0.99) {
+                if (prediction.score > 0.60) {
                     console.log(prediction.box);
                 }
             }
