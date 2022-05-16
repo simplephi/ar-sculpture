@@ -31,11 +31,20 @@
             return tensor_image;
         }
 
+        var children = [];
+        const liveView = document.getElementById('liveView');
+
         async function predict() {
             let tensor = captureWebcam();
 
             // const options = {score: 0.5, iou: 0.5, topk: 20};
             const predictions = await model.detect(tensor);
+            // Remove any highlighting we did previous frame.
+            for (let i = 0; i < children.length; i++) {
+              liveView.removeChild(children[i]);
+            }
+            children.splice(0);
+
             for (let prediction of predictions) {
 
                 // console.log(prediction.score);
@@ -48,19 +57,19 @@
 
                 if (prediction.score > 0.70) {
                   const p = document.createElement('p');
-                  p.innerText = prediction.class  + ' - with '
+                  p.innerText = prediction.label  + ' - with '
                       + Math.round(parseFloat(prediction.score) * 100)
                       + '% confidence.';
                   p.style = 'margin-left: ' + prediction.box[0] + 'px; margin-top: '
-                      + (prediction.box[1] - 10) + 'px; width: '
-                      + (prediction.box[2] - 10) + 'px; top: 0; left: 0;';
+                      + (prediction.box[2] - 10) + 'px; width: '
+                      + (prediction.box[3] - 10) + 'px; top: 0; left: 0;';
 
                   const highlighter = document.createElement('div');
                   highlighter.setAttribute('class', 'highlighter');
                   highlighter.style = 'left: ' + prediction.box[0] + 'px; top: '
-                      + prediction.box[1] + 'px; width: '
-                      + prediction.box[2] + 'px; height: '
-                      + prediction.box[3] + 'px;';
+                      + prediction.box[2] + 'px; width: '
+                      + prediction.box[3] + 'px; height: '
+                      + prediction.box[1] + 'px;';
 
                   liveView.appendChild(highlighter);
                   liveView.appendChild(p);
