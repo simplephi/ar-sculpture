@@ -38,14 +38,14 @@
             const predictions = await model.detect(tensor);
             for (let prediction of predictions) {
                 console.log(prediction.score);
-                if (prediction.score > 0.99) {
+                if (prediction.score > 0.90) {
                     console.log(prediction.box);
                 }
             }
-            // Show the resulting object on the page.
-            // const pre = document.createElement('pre');
-            // pre.textContent = JSON.stringify(predictions, null, 2);
-            // document.body.append(pre);
+            Show the resulting object on the page.
+            const pre = document.createElement('pre');
+            pre.textContent = JSON.stringify(predictions, null, 2);
+            document.body.append(pre);
         }
 
         tf.automl.loadObjectDetection('https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/goldwatch-tensorflow-js/model.json').then(function (loadedModel) {
