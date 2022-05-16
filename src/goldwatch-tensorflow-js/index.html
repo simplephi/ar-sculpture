@@ -71,10 +71,15 @@
                       + prediction.box[3] + 'px; height: '
                       + prediction.box[1] + 'px;';
 
+
+
                   liveView.appendChild(highlighter);
                   liveView.appendChild(p);
                   children.push(highlighter);
                   children.push(p);
+
+                  console.log("liveView: " , liveView);
+                  console.log("children: " , children);
 
                 }
             }
