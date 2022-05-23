@@ -14,7 +14,7 @@
 
 
 </head>
-<body style="margin : 0px; overflow: hidden;">
+<body>
 
   <!-- <video id="main-stream-video" width="100%" height="100%"></video> -->
 
@@ -64,7 +64,7 @@
 
       <!-- <a-camera gps-camera rotation-reader id="main-stream-video"> -->
 
-          <video gps-camera rotation-reader id="main-stream-video" width="100%" height="100%">
+          <video gps-camera rotation-reader id="main-stream-video">
 
           </video>
       <!-- </a-camera> -->
@@ -458,7 +458,8 @@
         tf.automl.loadObjectDetection('https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/goldwatch-tensorflow-js/model.json').then(function (loadedModel) {
             model = loadedModel;
 
-            video = $('#main-stream-video').get(0);
+            // video = $('#main-stream-video').get(0);
+            var video = document.querySelector('#main-stream-video').get(0);
             vendorUrl = window.URL || window.webkitURL;
 
             return navigator.mediaDevices.getUserMedia({
