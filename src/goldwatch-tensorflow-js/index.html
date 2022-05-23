@@ -4,15 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tfjs</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+		<script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+
+
+    <title>Gold Watch TFJS</title>
 </head>
-<body>
-    <video id="main-stream-video" width="100%" height="100%"></video>
+<body style="margin : 0px; overflow: hidden;">
+
+  <video id="main-stream-video" width="100%" height="100%"></video>
+
+  <a-scene markers_start renderer=" physicallyCorrectLights: true;"  vr-mode-ui="enabled: false" color-space="sRGB" embedded arjs='debugUIEnabled: false; sourceType: webcam;'>
+      <!-- SPIRAL -->
+      <a-assets>
+
+        <a-asset-item id="spiral-obj" src="../assets/obj/watch_v06_2_small.obj"></a-asset-item>
+        <a-asset-item id="spiral-mtl" src="../assets/obj/watch_v06_2_small.mtl"></a-asset-item>
+      </a-assets>
+
+      <!-- TORUS -->
+      <a-assets>
+
+        <a-asset-item id="torus-obj" src="../assets/obj/torus_gold.obj"></a-asset-item>
+        <a-asset-item id="gold-mtl" src="../assets/obj/torus_gold.mtl"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+
+        <a-asset-item id="torus_gold_older-obj" src="../assets/obj/torus_gold_older.obj"></a-asset-item>
+        <a-asset-item id="torus_gold_older-mtl" src="../assets/obj/torus_gold_older.mtl"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+
+        <a-asset-item id="torus_gold_oldest-obj" src="../assets/obj/torus_gold_oldest.obj"></a-asset-item>
+        <a-asset-item id="torus_gold_oldest-mtl" src="../assets/obj/torus_gold_oldest.mtl"></a-asset-item>
+      </a-assets>
+
+      <!-- SPHERE -->
+      <a-assets>
+
+        <a-asset-item id="sphere_gold_oldest-obj" src="../assets/obj/sphere_gold_oldest.obj"></a-asset-item>
+        <a-asset-item id="sphere_gold_oldest-mtl" src="../assets/obj/sphere_gold_oldest.mtl"></a-asset-item>
+      </a-assets>
+      <a-assets>
+
+        <a-asset-item id="sphere_gold_older-obj" src="../assets/obj/sphere_gold_older.obj"></a-asset-item>
+        <a-asset-item id="sphere_gold_older-mtl" src="../assets/obj/sphere_gold_older.mtl"></a-asset-item>
+      </a-assets>
+      <a-assets>
+
+        <a-asset-item id="sphere_gold-obj" src="../assets/obj/sphere_gold.obj"></a-asset-item>
+        <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
+      </a-assets>
+
+      <a-camera gps-camera rotation-reader>
+
+      </a-camera>
+
+    </a-scene>
+
+
+
+
     <script src="https://unpkg.com/@tensorflow/tfjs"></script>
     <script src="https://unpkg.com/@tensorflow/tfjs-automl"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         model = null;
+
+        var optionsNewcoord = {
+          enableHighAccuracy: true,
+          maximumAge: 0
+        };
+
+        function error(err) {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
 
         function preprocessImage(image){
             let tensor = tf.browser.fromPixels(image);
@@ -55,7 +124,299 @@
 
                 console.log(prediction);
 
+                var executed = false;
+
                 if (prediction.score > 0.70) {
+
+                  // Execute once
+                  if (!executed) {
+                      executed = true;
+
+                      // ADD MODELS AFTER MARKER FOUND
+                      navigator.geolocation.getCurrentPosition(function(position) {
+
+                          const newCoordinates = JSON.stringify({
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                          });
+                          // console.log('stringified coordinates', newCoordinates);
+                          // localStorage.setItem('coords', newCoordinates);
+
+
+                          // CREATE
+                          var body = document.querySelector('a-scene');
+
+                          var spiral = document.createElement('a-entity');
+
+                          // spiral.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+
+
+                          spiral.setAttribute('obj-model', {
+                            obj: '#spiral-obj',
+                            mtl: '#spiral-mtl'
+                          });
+                          // spiral.setAttribute('gltf-model', '#spiral-gltf');
+
+                          spiral.object3D.position.set(0, 1, 0);
+                          spiral.object3D.scale.set(0.05, 0.05, 0.05);
+                          spiral.object3D.rotation.set(0, 0, 0);
+
+                          spiral.setAttribute('animation', {
+                            'property': 'rotation',
+                            'to': '0 360 0',
+                            'loop': true,
+                            'dur': 5000,
+                            'dir': "alternate"
+                          });
+
+                          spiral.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+
+                          body.appendChild(spiral);
+
+
+                          /////////////////////////////////////////////////////GOLD OLDEST///////////////////////////////////////////////////////
+
+                          var animation_sphere_gold_oldest = document.createElement('a-entity');
+                          var torus1 = document.createElement('a-entity');
+                          var sphere1 = document.createElement('a-entity');
+                          var combine1 = document.createElement('a-entity');
+
+                          // animation_sphere_gold_oldest.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+                          // animation_sphere_gold_oldest.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+
+
+                          animation_sphere_gold_oldest.setAttribute('animation', {
+                            'property': 'rotation',
+                            'to': '0 360 0',
+                            'loop': true,
+                            'dur': 60000
+                          });
+
+                          animation_sphere_gold_oldest.object3D.position.set(0, 0, -1);
+
+                          animation_sphere_gold_oldest.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(4)
+                          );
+
+                          sphere1.setAttribute('obj-model', {
+                                        obj: '#sphere_gold_oldest-obj',
+                                        mtl: '#sphere_gold_oldest-mtl',
+
+                                      });
+
+                          // sphere1.setAttribute('gltf-model', '#sphere_gold_oldest-gltf');
+
+
+                          sphere1.object3D.position.set(0, 0, 0);
+                          sphere1.object3D.scale.set(0.1, 0.1, 0.1);
+                          sphere1.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '0.3 1 0.2',
+                            'to': '0.3 1.2 0.2',
+                            'loop': true,
+                            'dur': 6000,
+                            'dir': "alternate"
+                          });
+
+                          animation_sphere_gold_oldest.appendChild(sphere1);
+
+
+                          torus1.setAttribute('obj-model', {
+                                        obj: '#torus_gold_oldest-obj',
+                                        mtl: '#torus_gold_oldest-mtl'
+                                      });
+                          // torus1.setAttribute('gltf-model', '#torus_gold_oldest-gltf');
+
+                          torus1.object3D.scale.set(0.05, 0.05, 0.05);
+                          torus1.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(4)
+                          );
+
+                          torus1.object3D.position.set(0, 1, -1);
+                          torus1.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '0 1 -1',
+                            'to': '0 1.2 -1',
+                            'loop': true,
+                            'dur': 6000,
+                            'dir': "alternate"
+                          });
+
+
+                          combine1.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+                          combine1.appendChild(animation_sphere_gold_oldest);
+                          combine1.appendChild(torus1);
+                          body.appendChild(combine1);
+
+
+                          ///////////////////////////////////////////////////GOLD/////////////////////////////////////////////////////////////
+
+                          var animation_sphere_gold = document.createElement('a-entity');
+                          var torus2 = document.createElement('a-entity');
+                          var sphere2 = document.createElement('a-entity');
+                          var combine2 = document.createElement('a-entity');
+
+                          // animation_sphere_gold.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+                          // animation_sphere_gold.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+
+
+                          animation_sphere_gold.setAttribute('animation', {
+                            'property': 'rotation',
+                            'to': '0 360 0',
+                            'loop': true,
+                            'dur': 3600000
+                             /* 'dur': 5000 */
+                          });
+                          animation_sphere_gold.object3D.position.set(0, 0, -1);
+
+                          animation_sphere_gold.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(-5)
+                          );
+
+                          sphere2.setAttribute('obj-model', {
+                                        obj: '#sphere_gold-obj',
+                                        mtl: '#sphere_gold-mtl',
+
+                                      });
+                           // sphere2.setAttribute('gltf-model', '#sphere_gold-gltf');
+
+
+                         sphere2.object3D.position.set(0, 0, 0);
+                         sphere2.object3D.scale.set(0.1, 0.1, 0.1);
+                         sphere2.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '-0.3 1.2 0.2',
+                            'to': '-0.3 1.3 0.2',
+                            'loop': true,
+                            'dur': 7000,
+                            'dir': "alternate"
+                          });
+
+                          animation_sphere_gold.appendChild(sphere2);
+
+
+                          torus2.setAttribute('obj-model', {
+                                        obj: '#torus-obj',
+                                        mtl: '#gold-mtl'
+                                      });
+
+                           // torus2.setAttribute('gltf-model', '#torus_gold-gltf');
+
+                         torus2.object3D.scale.set(0.05, 0.05, 0.05);
+                         torus2.object3D.position.set(0, 1, -1);
+                         torus2.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '0 1.2 -1',
+                            'to': '0 1.3 -1',
+                            'loop': true,
+                            'dur': 7000,
+                            'dir': "alternate"
+                          });
+                           torus2.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(-5)
+                          );
+
+                          combine2.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+                          combine2.appendChild(torus2);
+                          combine2.appendChild(animation_sphere_gold);
+                          body.appendChild(combine2);
+
+
+                          //////////////////////////////////////////////////////GOLD OLDER//////////////////////////////////////////////////////
+
+                          var animation_sphere_gold_older = document.createElement('a-entity');
+                          var torus3 = document.createElement('a-entity');
+                          var sphere3 = document.createElement('a-entity');
+                          var combine3 = document.createElement('a-entity');
+
+                          // animation_sphere_gold_older.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+                          // animation_sphere_gold_older.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+
+
+                          animation_sphere_gold_older.setAttribute('animation', {
+                            'property': 'rotation',
+                            'to': '0 360 0',
+                            'loop': true,
+                            'dur': 86400000
+                            /* 'dur': 5000 */
+                          });
+                          animation_sphere_gold_older.object3D.position.set(0, 0, -1);
+
+                          animation_sphere_gold_older.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(5)
+                          );
+
+                          sphere3.setAttribute('obj-model', {
+                                        obj: '#sphere_gold_older-obj',
+                                        mtl: '#sphere_gold_older-mtl',
+
+                                      });
+                          // sphere3.setAttribute('gltf-model', '#sphere_gold_older-gltf');
+
+                          sphere3.object3D.position.set(0, 2, 0);
+                         sphere3.object3D.scale.set(0.1, 0.1, 0.1);
+                         sphere3.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '0.3 1.5 0.2',
+                            'to': '0.3 1.3 0.2',
+                            'loop': true,
+                            'dur': 8000,
+                            'dir': "alternate"
+                          });
+
+                          animation_sphere_gold_older.appendChild(sphere3);
+
+
+                          torus3.setAttribute('obj-model', {
+                                        obj: '#torus_gold_older-obj',
+                                        mtl: '#torus_gold_older-mtl'
+                                      });
+                          // torus3.setAttribute('gltf-model', '#torus_gold_older-gltf');
+
+                          torus3.object3D.scale.set(0.05, 0.05, 0.05);
+                           torus3.object3D.position.set(-1, 2, -1);
+
+                           torus3.setAttribute('animation', {
+                            'property': 'position',
+                            'easing': 'linear',
+                            'from': '0 1.5 -1',
+                            'to': '0 1.3 -1',
+                            'loop': true,
+                            'dur': 8000,
+                            'dir': "alternate"
+                          });
+
+                          torus3.object3D.rotation.set(
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(0),
+                            THREE.Math.degToRad(5)
+                          );
+
+                          combine3.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+                          combine3.appendChild(torus3);
+                          combine3.appendChild(animation_sphere_gold_older);
+                          body.appendChild(combine3);
+
+                          console.log('successfully show AR on marker location based once');
+
+                        }, error, optionsNewcoord);
+                  }
+
                   const p = document.createElement('p');
                   p.innerText = prediction.label  + ' - with '
                       + Math.round(parseFloat(prediction.score) * 100)
@@ -80,6 +441,12 @@
 
                   console.log("liveView: " , liveView);
                   console.log("children: " , children);
+
+
+                  ///////////////////////////////////////////
+
+
+                  //////////////////////////////////////////
 
                 }
             }
@@ -113,5 +480,7 @@
             });
         });
     </script>
+
+
 </body>
 </html>
