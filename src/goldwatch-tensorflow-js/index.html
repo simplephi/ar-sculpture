@@ -12,7 +12,7 @@
 </head>
 <body style="margin : 0px; overflow: hidden;">
 
-  <video id="main-stream-video" width="100%" height="100%"></video>
+  <!-- <video id="main-stream-video" width="100%" height="100%"></video> -->
 
   <a-scene markers_start renderer=" physicallyCorrectLights: true;"  vr-mode-ui="enabled: false" color-space="sRGB" embedded arjs='debugUIEnabled: false; sourceType: webcam;'>
       <!-- SPIRAL -->
@@ -58,7 +58,7 @@
         <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
       </a-assets>
 
-      <a-camera gps-camera rotation-reader>
+      <a-camera gps-camera rotation-reader id="main-stream-video">
 
       </a-camera>
 
