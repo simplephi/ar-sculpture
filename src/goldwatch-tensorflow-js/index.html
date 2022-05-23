@@ -18,7 +18,7 @@
 
   <!-- <video id="main-stream-video" width="100%" height="100%"></video> -->
 
-  <a-scene renderer=" physicallyCorrectLights: true;"  vr-mode-ui="enabled: false" color-space="sRGB" embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+  <a-scene renderer=" physicallyCorrectLights: true;"  vr-mode-ui="enabled: false" color-space="sRGB" embedded >
       <!-- SPIRAL -->
       <a-assets>
 
@@ -64,7 +64,7 @@
 
       <!-- <a-camera gps-camera rotation-reader id="main-stream-video"> -->
 
-          <video gps-camera rotation-reader id="main-stream-video" width="100%" height="100%">
+          <video gps-camera rotation-reader id="main-stream-video" >
 
           </video>
       <!-- </a-camera> -->
@@ -127,7 +127,7 @@
 
 
 
-                if (prediction.score > 0.70) {
+                if (prediction.score > 0.90) {
 
                   // Execute once
                   if (!executed) {
