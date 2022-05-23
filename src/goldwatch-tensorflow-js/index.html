@@ -62,12 +62,12 @@
         <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
       </a-assets>
 
-      <!-- <a-camera gps-camera rotation-reader id="main-stream-video"> -->
+      <a-camera gps-camera rotation-reader id="main-stream-video">
 
-          <video gps-camera rotation-reader id="main-stream-video" width="100%" height="100%">
+          <!-- <video gps-camera rotation-reader id="main-stream-video" width="100%" height="100%"> -->
 
-          </video>
-      <!-- </a-camera> -->
+          <!-- </video> -->
+      </a-camera>
 
     </a-scene>
 
@@ -101,8 +101,8 @@
             return tensor_image;
         }
 
-        var children = [];
-        const liveView = document.getElementById('main-stream-video');
+        // var children = [];
+        // const liveView = document.getElementById('main-stream-video');
 
         async function predict() {
             let tensor = captureWebcam();
@@ -418,30 +418,30 @@
                         }, error, optionsNewcoord);
                   }
 
-                  const p = document.createElement('p');
-                  p.innerText = prediction.label  + ' - with '
-                      + Math.round(parseFloat(prediction.score) * 100)
-                      + '% confidence.';
-                  p.style = 'margin-left: ' + prediction.box[0] + 'px; margin-top: '
-                      + (prediction.box[2] - 10) + 'px; width: '
-                      + (prediction.box[3] - 10) + 'px; top: 0; left: 0;';
-
-                  const highlighter = document.createElement('div');
-                  highlighter.setAttribute('class', 'highlighter');
-                  highlighter.style = 'left: ' + prediction.box[0] + 'px; top: '
-                      + prediction.box[2] + 'px; width: '
-                      + prediction.box[3] + 'px; height: '
-                      + prediction.box[1] + 'px;';
-
-
-
-                  liveView.appendChild(highlighter);
-                  liveView.appendChild(p);
-                  children.push(highlighter);
-                  children.push(p);
-
-                  console.log("liveView: " , liveView);
-                  console.log("children: " , children);
+                  // const p = document.createElement('p');
+                  // p.innerText = prediction.label  + ' - with '
+                  //     + Math.round(parseFloat(prediction.score) * 100)
+                  //     + '% confidence.';
+                  // p.style = 'margin-left: ' + prediction.box[0] + 'px; margin-top: '
+                  //     + (prediction.box[2] - 10) + 'px; width: '
+                  //     + (prediction.box[3] - 10) + 'px; top: 0; left: 0;';
+                  //
+                  // const highlighter = document.createElement('div');
+                  // highlighter.setAttribute('class', 'highlighter');
+                  // highlighter.style = 'left: ' + prediction.box[0] + 'px; top: '
+                  //     + prediction.box[2] + 'px; width: '
+                  //     + prediction.box[3] + 'px; height: '
+                  //     + prediction.box[1] + 'px;';
+                  //
+                  //
+                  //
+                  // liveView.appendChild(highlighter);
+                  // liveView.appendChild(p);
+                  // children.push(highlighter);
+                  // children.push(p);
+                  //
+                  // console.log("liveView: " , liveView);
+                  // console.log("children: " , children);
 
 
                   ///////////////////////////////////////////
