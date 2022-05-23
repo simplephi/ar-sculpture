@@ -62,9 +62,9 @@
         <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
       </a-assets>
 
-      <a-camera gps-camera rotation-reader>
+      <a-camera gps-camera rotation-reader id="main-stream-video">
 
-          <!-- <video id="main-stream-video" width="100%" height="100%">
+          <!-- <video  width="100%" height="100%">
 
           </video> -->
       </a-camera>
@@ -464,12 +464,12 @@
             vendorUrl = window.URL || window.webkitURL;
 
             return navigator.mediaDevices.getUserMedia({
-                // video: true,
-                video: {
-                  facingMode: {
-                    exact: 'environment'
-                  }
-                },
+                video: true,
+                // video: {
+                //   facingMode: {
+                //     exact: 'environment'
+                //   }
+                // },
                 audio: false
             }).then(function(stream) {
                 localStream = stream;
