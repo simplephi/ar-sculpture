@@ -114,7 +114,7 @@
             //   liveView.removeChild(children[i]);
             // }
             // children.splice(0);
-
+            var executed = false;
             for (let prediction of predictions) {
 
                 // console.log(prediction.score);
@@ -125,7 +125,7 @@
 
                 console.log(prediction);
 
-                var executed = false;
+
 
                 if (prediction.score > 0.70) {
 
@@ -460,7 +460,7 @@
             vendorUrl = window.URL || window.webkitURL;
 
             return navigator.mediaDevices.getUserMedia({
-                video: { width: 1280, height: 720 },
+                video:true,
                 // video: {
                 //   facingMode: {
                 //     exact: 'environment'
