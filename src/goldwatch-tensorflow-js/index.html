@@ -110,10 +110,10 @@
             // const options = {score: 0.5, iou: 0.5, topk: 20};
             const predictions = await model.detect(tensor);
             // Remove any highlighting we did previous frame.
-            for (let i = 0; i < children.length; i++) {
-              liveView.removeChild(children[i]);
-            }
-            children.splice(0);
+            // for (let i = 0; i < children.length; i++) {
+            //   liveView.removeChild(children[i]);
+            // }
+            // children.splice(0);
 
             for (let prediction of predictions) {
 
@@ -444,10 +444,6 @@
                   // console.log("children: " , children);
 
 
-                  ///////////////////////////////////////////
-
-
-                  //////////////////////////////////////////
 
                 }
             }
