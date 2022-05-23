@@ -464,7 +464,7 @@
             vendorUrl = window.URL || window.webkitURL;
 
             return navigator.mediaDevices.getUserMedia({
-                video: true,
+                video: { width: 1280, height: 720 },
                 // video: {
                 //   facingMode: {
                 //     exact: 'environment'
