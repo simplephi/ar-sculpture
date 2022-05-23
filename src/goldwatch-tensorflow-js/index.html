@@ -131,7 +131,7 @@
 
                   // Execute once
                   if (!executed) {
-                      executed = true;
+
 
                       // ADD MODELS AFTER MARKER FOUND
                       navigator.geolocation.getCurrentPosition(function(position) {
@@ -416,6 +416,8 @@
                           console.log('successfully show AR on marker location based once');
 
                         }, error, optionsNewcoord);
+
+                      executed = true;
                   }
 
                   // const p = document.createElement('p');
