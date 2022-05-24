@@ -62,12 +62,12 @@
         <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
       </a-assets>
 
-      <!-- <video id="main-stream-video" width="480" height="360" gps-camera rotation-reader >
+      <video id="main-stream-video" width="480" height="360" >
+        <a-camera gps-camera rotation-reader>
+            
+        </a-camera>
+      </video>
 
-      </video> -->
-      <a-video  id="main-stream-video" width="480" height="360" gps-camera rotation-reader>
-
-      </a-video >
 
     </a-scene>
 
@@ -127,7 +127,7 @@
 
 
 
-                if (prediction.score > 0.50 && executed) {
+                if (prediction.score > 0.90 && executed) {
 
                   // ADD MODELS AFTER MARKER FOUND
                   navigator.geolocation.getCurrentPosition(function(position) {
