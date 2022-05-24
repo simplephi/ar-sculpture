@@ -62,9 +62,12 @@
         <a-asset-item id="sphere_gold-mtl" src="../assets/obj/sphere_gold.mtl"></a-asset-item>
       </a-assets>
 
-      <video id="main-stream-video" width="480" height="360" gps-camera rotation-reader >
+      <!-- <video id="main-stream-video" width="480" height="360" gps-camera rotation-reader >
 
-      </video>
+      </video> -->
+      <a-camera id="main-stream-video" width="480" height="360" gps-camera rotation-reader>
+
+      </a-camera>
 
     </a-scene>
 
@@ -464,7 +467,7 @@
                     exact: 'environment'
                   },
                   zoom: true,
-                  
+
                 },
                 audio: false
             }).then(function(stream) {
