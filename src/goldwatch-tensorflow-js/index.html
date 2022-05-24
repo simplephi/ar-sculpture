@@ -75,6 +75,7 @@
     <script>
         model = null;
         var executed = true;
+        var myInterval;
 
         var optionsNewcoord = {
           enableHighAccuracy: true,
@@ -416,7 +417,7 @@
 
                   executed = false;
 
-
+                  clearInterval(myInterval);
                   // const p = document.createElement('p');
                   // p.innerText = prediction.label  + ' - with '
                   //     + Math.round(parseFloat(prediction.score) * 100)
@@ -440,8 +441,7 @@
                   // children.push(p);
                   //
                   // console.log("liveView: " , liveView);
-                  const element = document.getElementById("main-stream-video");
-                  element.remove();
+
 
                 }
                 else {
@@ -476,7 +476,7 @@
                 localStream = stream;
                 video.srcObject = stream;
                 video.play();
-                setInterval(predict, 1000/10);
+                myInterval = setInterval(predict, 1000/10);
             }).catch(function(error) {
                 alert("Something wrong with webcam!");
             });
