@@ -8,13 +8,13 @@
 
         <a-scene embedded arjs='sourceType: webcam;' renderer="colorManagement: true; physicallyCorrectLights: true;" vr-mode-ui="enabled: false" color-space="sRGB">
 
-          <!-- <a-entity light="type: ambient;  intensity: 5"></a-entity> -->
+          <a-entity light="type: ambient;  intensity: 3"></a-entity>
 
           <a-assets>
   			    <a-asset-item id="monster" src="../assets/gltf/salamandar_test.gltf"></a-asset-item>
   			  </a-assets>
 
-          <a-marker-camera type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-location-based-test/main/data/data/patt.hiro">
+          <a-marker type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-location-based-test/main/data/data/patt.hiro">
             <a-entity
               position="0 0 0"
               rotation="0 0 0"
@@ -22,9 +22,9 @@
               gltf-model="#monster"
               animation-mixer
             ></a-entity>
-          </a-marker-camera>
+          </a-marker>
 
-          <!-- <a-entity camera></a-entity> -->
+          <a-entity camera></a-entity>
           <!-- <a-camera></a-camera> -->
         </a-scene>
     </body>
