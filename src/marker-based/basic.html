@@ -14,18 +14,18 @@
   			    <a-asset-item id="monster" src="../assets/gltf/salamandar_test.gltf"></a-asset-item>
   			  </a-assets>
 
-          <a-entity
-            position="0 0 0"
-            rotation="0 0 0"
-            scale="0.05 0.05 0.05"
-            gltf-model="#monster"
-            animation-mixer
-          ></a-entity>
-          <a-marker-camera preset="hiro">
 
-          </a-marker-camera>
+          <a-marker preset="hiro">
+            <a-entity
+              position="0 0 0"
+              rotation="0 0 0"
+              scale="0.05 0.05 0.05"
+              gltf-model="#monster"
+              animation-mixer
+            ></a-entity>
+          </a-marker>
 
-          <!-- <a-entity camera></a-entity> -->
+          <a-entity camera></a-entity>
           <!-- <a-camera></a-camera> -->
         </a-scene>
     </body>
