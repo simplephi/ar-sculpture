@@ -6,9 +6,9 @@
 
     <body style="margin : 0px; overflow: hidden;">
 
-        <a-scene embedded arjs renderer="colorManagement: true; physicallyCorrectLights: true;" vr-mode-ui="enabled: false" color-space="sRGB">
+        <a-scene embedded arjs>
 
-          <a-entity light="type: ambient;  intensity: 3"></a-entity>
+          <!-- <a-entity light="type: ambient;  intensity: 3"></a-entity> -->
 
           <a-assets>
   			    <a-asset-item id="monster" src="../assets/gltf/salamandar_test.gltf"></a-asset-item>
@@ -19,7 +19,7 @@
             <a-entity
               position="0 0 0"
               rotation="0 0 0"
-              scale="0.05 0.05 0.05"
+              scale="0.1 0.1 0.1"
               gltf-model="#monster"
               animation-mixer
             ></a-entity>
