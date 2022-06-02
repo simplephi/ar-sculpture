@@ -14,18 +14,20 @@
   			    <a-asset-item id="monster" src="../assets/gltf/salamandar_test.gltf"></a-asset-item>
   			  </a-assets>
 
+          <a-entity
+            position="0 0 0"
+            rotation="0 0 0"
+            scale="30.0 30.0 30.0"
+            gltf-model="#monster"
+            animation-mixer
+          ></a-entity>
 
-          <a-marker preset="hiro">
-            <a-entity
-              position="0 0 0"
-              rotation="0 0 0"
-              scale="50.0 50.0 50.0"
-              gltf-model="#monster"
-              animation-mixer
-            ></a-entity>
-          </a-marker>
+          <!-- <a-marker-camera preset="hiro"> -->
+          <a-marker-camera type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-url_qr.patt">
 
-          <a-entity camera></a-entity>
+          </a-marker-camera>
+
+          <!-- <a-entity camera></a-entity> -->
         </a-scene>
     </body>
 </html>
