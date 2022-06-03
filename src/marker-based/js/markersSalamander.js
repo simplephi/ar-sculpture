@@ -77,7 +77,7 @@ AFRAME.registerComponent('registerevents', {
             salamander.setAttribute('animation-mixer', '');
 
 
-            salamander.object3D.position.set(0, 0, 0);
+            salamander.object3D.position.set(0, 5, -10);
             salamander.object3D.scale.set(50, 50, 50);
             salamander.object3D.rotation.set(0, 0, 0);
 
