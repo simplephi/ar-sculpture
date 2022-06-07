@@ -2,6 +2,17 @@
 var lat = '';
 var long = '';
 
+var switchStatus = false;
+$("#togBtn").on('change', function() {
+    if ($(this).is(':checked')) {
+        switchStatus = $(this).is(':checked');
+        alert(switchStatus);// To verify
+    }
+    else {
+       switchStatus = $(this).is(':checked');
+       alert(switchStatus);// To verify
+    }
+});
 
 var optionsOldcoord = {
   enableHighAccuracy: true,
