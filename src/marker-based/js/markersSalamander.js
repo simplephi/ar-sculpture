@@ -3,7 +3,7 @@ var lat = '';
 var long = '';
 
 var switchStatus = false;
-document.getElementById("togBtn").on('change', function() {
+$("#togBtn").on('change', function() {
     if ($(this).is(':checked')) {
         switchStatus = $(this).is(':checked');
         console.log(switchStatus);// To verify
