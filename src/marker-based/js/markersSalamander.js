@@ -6,11 +6,11 @@ var switchStatus = false;
 $("#togBtn").on('change', function() {
     if ($(this).is(':checked')) {
         switchStatus = $(this).is(':checked');
-        console.log(switchStatus);// To verify
+         alert(switchStatus);// To verify
     }
     else {
        switchStatus = $(this).is(':checked');
-       console.log(switchStatus);// To verify
+        alert(switchStatus);// To verify
     }
 });
 
