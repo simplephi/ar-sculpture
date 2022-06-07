@@ -2,19 +2,7 @@
 var lat = '';
 var long = '';
 
-var switchStatus = false;
-$("#togBtn").on('change', function() {
-    if ($(this).is(':checked')) {
-        switchStatus = $(this).is(':checked');
-         alert(switchStatus);// To verify
-         console.log(switchStatus);
-    }
-    else {
-       switchStatus = $(this).is(':checked');
-        alert(switchStatus);// To verify
-         console.log(switchStatus);
-    }
-});
+
 
 var optionsOldcoord = {
   enableHighAccuracy: true,
@@ -45,6 +33,19 @@ AFRAME.registerComponent('markers_start',{
 					markerEl.setAttribute('registerevents','');
 					sceneEl.appendChild(markerEl);
 
+          var switchStatus = false;
+          $("#togBtn").on('change', function() {
+              if ($(this).is(':checked')) {
+                  switchStatus = $(this).is(':checked');
+                   alert(switchStatus);// To verify
+                   console.log(switchStatus);
+              }
+              else {
+                 switchStatus = $(this).is(':checked');
+                  alert(switchStatus);// To verify
+                   console.log(switchStatus);
+              }
+          });
 
 	}
 
