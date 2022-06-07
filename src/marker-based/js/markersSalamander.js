@@ -7,10 +7,12 @@ $("#togBtn").on('change', function() {
     if ($(this).is(':checked')) {
         switchStatus = $(this).is(':checked');
          alert(switchStatus);// To verify
+         console.log(switchStatus);
     }
     else {
        switchStatus = $(this).is(':checked');
         alert(switchStatus);// To verify
+         console.log(switchStatus);
     }
 });
 
