@@ -28,7 +28,8 @@ AFRAME.registerComponent('markers_start',{
 					var markerEl = document.createElement('a-marker');
 
 					markerEl.setAttribute('type','pattern');
-					markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-url_qr-black-big.patt');
+					// markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-url_qr-black-big.patt');
+					markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-frame.patt');
 
 					markerEl.setAttribute('registerevents','');
 					sceneEl.appendChild(markerEl);
