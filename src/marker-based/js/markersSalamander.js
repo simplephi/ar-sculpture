@@ -54,13 +54,15 @@ AFRAME.registerComponent('markers_start',{
                   // cameraMarker.setAttribute('camera', '');
                   // sceneEl.appendChild(cameraMarker);
 
+                  entityMarker = 1;
 
-
+                  if(entityMarker==1){
 
                    var salamanderMarker = document.createElement('a-entity');
 
                     salamanderMarker.setAttribute('gltf-model', '#salamander');
                     salamanderMarker.setAttribute('animation-mixer', '');
+                    salamanderMarker.setAttribute('id', 'salamanderMarker');
 
                     salamanderMarker.object3D.position.set(0, 0, 0);
                     salamanderMarker.object3D.scale.set(15, 15, 15);
@@ -68,6 +70,29 @@ AFRAME.registerComponent('markers_start',{
 
                    markerEl.appendChild(salamanderMarker);
 
+                   // entityMarker = 0;
+
+                 }
+                 else if(entityMarker==1 && entityGps==1){
+                   var modelGps = document.getElementById('salamanderGps');
+                   modelGps.parentNode.removeChild(modelGps);
+
+                   var salamanderMarker = document.createElement('a-entity');
+
+                    salamanderMarker.setAttribute('gltf-model', '#salamander');
+                    salamanderMarker.setAttribute('animation-mixer', '');
+                    salamanderMarker.setAttribute('id', 'salamanderMarker');
+
+                    salamanderMarker.object3D.position.set(0, 0, 0);
+                    salamanderMarker.object3D.scale.set(15, 15, 15);
+                    salamanderMarker.object3D.rotation.set(0, 0, 0);
+
+                   markerEl.appendChild(salamanderMarker);
+
+                   entityMarker = 1;
+                   entityGps = 0;
+
+                 }
 
 
               }
@@ -90,70 +115,75 @@ AFRAME.registerComponent('markers_start',{
                   // cameraGPS.setAttribute('rotation-reader', '');
                   // sceneEl.appendChild(cameraGPS);
 
+                  entityGps = 1;
+                  if(entityMarker==1){
 
-                  //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
+                    var modelMarker = document.getElementById('salamanderMarker');
+                    modelMarker.parentNode.removeChild(modelMarker);
 
-                       markerEl.addEventListener("markerFound", ()=> {
+                    //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
+                     markerEl.addEventListener("markerFound", ()=> {
 
+                       console.log('Marker Found');
 
-                         console.log('Marker Found');
+                       // ADD MODELS AFTER MARKER FOUND
+                       navigator.geolocation.getCurrentPosition(function(position) {
 
-
-                         // var cameraPosition = document.querySelector('[gps-camera]').object3D.position;
-                         // console.log('Marker Position: ', cameraPosition);
-
-
-                         // ADD MODELS AFTER MARKER FOUND
-                         navigator.geolocation.getCurrentPosition(function(position) {
-
-                             const newCoordinates = JSON.stringify({
-                               lat: position.coords.latitude,
-                               lng: position.coords.longitude
-                             });
-                             // console.log('stringified coordinates', newCoordinates);
-                             // localStorage.setItem('coords', newCoordinates);
+                           const newCoordinates = JSON.stringify({
+                             lat: position.coords.latitude,
+                             lng: position.coords.longitude
+                           });
+                           // console.log('stringified coordinates', newCoordinates);
+                           // localStorage.setItem('coords', newCoordinates);
 
 
-                              // CREATE
-                             var body = document.querySelector('a-scene');
+                            // CREATE
+                           var body = document.querySelector('a-scene');
 
-                             var salamander = document.createElement('a-entity');
+                           var salamander = document.createElement('a-entity');
 
-                             // spiral.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+                           // spiral.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
 
 
 
-                              salamander.setAttribute('gltf-model', '#salamander');
-                              salamander.setAttribute('animation-mixer', '');
+                            salamander.setAttribute('gltf-model', '#salamander');
+                            salamander.setAttribute('animation-mixer', '');
+                            salamander.setAttribute('id', 'salamanderGps');
 
 
-                              salamander.object3D.position.set(0, 0, 0);
-                              salamander.object3D.scale.set(50, 50, 50);
-                              salamander.object3D.rotation.set(0, 0, 0);
+                            salamander.object3D.position.set(0, 0, 0);
+                            salamander.object3D.scale.set(50, 50, 50);
+                            salamander.object3D.rotation.set(0, 0, 0);
 
 
-                              salamander.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+                            salamander.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
 
-                             body.appendChild(salamander);
-
-
-
-                             console.log('Successfully show AR on marker location based once');
-
-                           }, error, optionsNewcoord);
+                           body.appendChild(salamander);
 
 
 
-                       }, {once : true});
+                           console.log('Successfully show AR on marker location based once');
 
-                       // marker.addEventListener("markerLost",() =>{
-                       markerEl.addEventListener("markerLost",() =>{
+                         }, error, optionsNewcoord);
 
-                         console.log('Marker Lost');
-                       });
-                  
-                  ////////////////////////////////////////////////////////////////////////////////////
 
+
+                     }, {once : true});
+
+                     // marker.addEventListener("markerLost",() =>{
+                     markerEl.addEventListener("markerLost",() =>{
+
+                       console.log('Marker Lost');
+                     });
+                    ////////////////////////////////////////////////////////////////////////////////////
+
+                    // entityGps = 0;
+                  }
+
+                // else {
+                //   var modelGps = document.getElementById('salamanderGps');
+                //   modelGps.parentNode.removeChild(modelGps);
+                // }
 
               }
           });
