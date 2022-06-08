@@ -79,12 +79,14 @@ AFRAME.registerComponent('markers_start',{
                   cameraGPS.setAttribute('rotation-reader', '');
                   sceneEl.appendChild(cameraGPS);
 
-                  //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
-                  AFRAME.registerComponent('registerevents', {
-                     init: function () {
-                       const marker = this.el;
 
-                       marker.addEventListener("markerFound", ()=> {
+                  //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
+                  // AFRAME.registerComponent('registerevents', {
+                  //    init: function () {
+                       // const marker = this.el;
+
+                       // marker.addEventListener("markerFound", ()=> {
+                       markerEl.addEventListener("markerFound", ()=> {
 
 
                          console.log('Marker Found');
@@ -137,12 +139,13 @@ AFRAME.registerComponent('markers_start',{
 
                        }, {once : true});
 
-                       marker.addEventListener("markerLost",() =>{
+                       // marker.addEventListener("markerLost",() =>{
+                       markerEl.addEventListener("markerLost",() =>{
 
                          console.log('Marker Lost');
                        });
-                     },
-                   });
+                   //   },
+                   // });
                   ////////////////////////////////////////////////////////////////////////////////////
 
 
