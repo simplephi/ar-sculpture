@@ -41,6 +41,16 @@ AFRAME.registerComponent('markers_start',{
                    alert("Marker Based");// To verify
                    console.log(switchStatus, "Marker Based");
 
+                   // Remove GPS Camera
+                   var cameraGPS = document.querySelector('a-camera');
+                   cameraGPS.parentNode.removeChild(cameraGPS);
+
+                   // Add entity camera
+                  var cameraMarker = document.createElement('a-entity');
+                  cameraMarker.setAttribute('camera', '');
+                  sceneEl.appendChild(cameraMarker);
+
+
                    var salamanderMarker = document.createElement('a-entity');
 
                     salamanderMarker.setAttribute('gltf-model', '#salamander');
@@ -57,6 +67,18 @@ AFRAME.registerComponent('markers_start',{
                  switchStatus = $(this).is(':checked');
                   alert("Marker Based and Location Based");// To verify
                    console.log(switchStatus, "Marker Based and Location Based");
+
+                   // Remove entity camera
+                   var cameraMarker = document.querySelector('a-entity');
+                   cameraMarker.parentNode.removeChild(cameraMarker);
+
+
+                   // Add GPS Camera
+                  var cameraGPS = document.createElement('a-camera');
+                  cameraGPS.setAttribute('gps-camera', '');
+                  cameraGPS.setAttribute('rotation-reader', '');
+                  sceneEl.appendChild(cameraGPS);
+
 
                    //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
                    AFRAME.registerComponent('registerevents', {
