@@ -46,17 +46,17 @@ AFRAME.registerComponent('markers_start',{
                    // Remove GPS Camera
                    // var cameraGPS = document.querySelector('a-camera');
                    // cameraGPS.parentNode.removeChild(cameraGPS);
-                   var cameraGPS = document.getElementById('cameragps');
-                   cameraGPS.parentNode.removeChild(cameraGPS);
+                  //  var cameraGPS = document.getElementById('cameragps');
+                  //  cameraGPS.parentNode.removeChild(cameraGPS);
+                  //
+                  //  // Add entity camera
+                  // var cameraMarker = document.createElement('a-entity');
+                  // cameraMarker.setAttribute('camera', '');
+                  // sceneEl.appendChild(cameraMarker);
 
-                   // Add entity camera
-                  var cameraMarker = document.createElement('a-entity');
-                  cameraMarker.setAttribute('camera', '');
-                  sceneEl.appendChild(cameraMarker);
 
 
 
-                  
                    var salamanderMarker = document.createElement('a-entity');
 
                     salamanderMarker.setAttribute('gltf-model', '#salamander');
@@ -80,23 +80,19 @@ AFRAME.registerComponent('markers_start',{
                    // Remove entity camera
                    // var cameraMarker = document.querySelector('a-entity');
                    // cameraMarker.parentNode.removeChild(cameraMarker);
-                   var cameraMarker = document.getElementById('cameramarker');
-                   cameraMarker.parentNode.removeChild(cameraMarker);
-
-
-                   // Add GPS Camera
-                  var cameraGPS = document.createElement('a-camera');
-                  cameraGPS.setAttribute('gps-camera', '');
-                  cameraGPS.setAttribute('rotation-reader', '');
-                  sceneEl.appendChild(cameraGPS);
+                  //  var cameraMarker = document.getElementById('cameramarker');
+                  //  cameraMarker.parentNode.removeChild(cameraMarker);
+                  //
+                  //
+                  //  // Add GPS Camera
+                  // var cameraGPS = document.createElement('a-camera');
+                  // cameraGPS.setAttribute('gps-camera', '');
+                  // cameraGPS.setAttribute('rotation-reader', '');
+                  // sceneEl.appendChild(cameraGPS);
 
 
                   //////////////////////////////////Detect marker found and lost////////////////////////////////////////////////////
-                  // AFRAME.registerComponent('registerevents', {
-                  //    init: function () {
-                       // const marker = this.el;
 
-                       // marker.addEventListener("markerFound", ()=> {
                        markerEl.addEventListener("markerFound", ()=> {
 
 
@@ -155,8 +151,7 @@ AFRAME.registerComponent('markers_start',{
 
                          console.log('Marker Lost');
                        });
-                   //   },
-                   // });
+                  
                   ////////////////////////////////////////////////////////////////////////////////////
 
 
