@@ -57,7 +57,7 @@ AFRAME.registerComponent('markers_start',{
                     salamander.setAttribute('animation-mixer', '');
 
                     salamanderMarker.object3D.position.set(0, 0, 0);
-                    salamanderMarker.object3D.scale.set(50, 50, 50);
+                    salamanderMarker.object3D.scale.set(15, 15, 15);
                     salamanderMarker.object3D.rotation.set(0, 0, 0);
 
                    markerEl.appendChild(salamanderMarker);
