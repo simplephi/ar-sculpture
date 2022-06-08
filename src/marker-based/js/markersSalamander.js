@@ -67,6 +67,7 @@ AFRAME.registerComponent('markers_start',{
                  switchStatus = $(this).is(':checked');
                   alert("Marker Based and Location Based");// To verify
                    console.log(switchStatus, "Marker Based and Location Based");
+                   console.log(markerEl);
 
                    // Remove entity camera
                    var cameraMarker = document.querySelector('a-entity');
