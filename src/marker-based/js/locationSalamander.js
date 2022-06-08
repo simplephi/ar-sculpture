@@ -26,16 +26,14 @@ function error(err) {
 
 function renderPlaces(places) {
 
-				
+
 				navigator.geolocation.getCurrentPosition(function(position) {
 
 						const newCoordinates = JSON.stringify({
 							lat: position.coords.latitude,
 							lng: position.coords.longitude
 						});
-						// console.log('stringified coordinates', newCoordinates);
-						// localStorage.setItem('coords', newCoordinates);
-
+						
 
             // CREATE
 						var body = document.querySelector('a-scene');
