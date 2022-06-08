@@ -1,6 +1,8 @@
 //Global Variable
 var lat = '';
 var long = '';
+var entityMarker = 0;
+var entityGps = 0;
 
 
 
@@ -42,7 +44,9 @@ AFRAME.registerComponent('markers_start',{
                    console.log(switchStatus, "Marker Based");
 
                    // Remove GPS Camera
-                   var cameraGPS = document.querySelector('a-camera');
+                   // var cameraGPS = document.querySelector('a-camera');
+                   // cameraGPS.parentNode.removeChild(cameraGPS);
+                   var cameraGPS = document.getElementById('cameragps');
                    cameraGPS.parentNode.removeChild(cameraGPS);
 
                    // Add entity camera
@@ -51,6 +55,8 @@ AFRAME.registerComponent('markers_start',{
                   sceneEl.appendChild(cameraMarker);
 
 
+
+                  
                    var salamanderMarker = document.createElement('a-entity');
 
                     salamanderMarker.setAttribute('gltf-model', '#salamander');
@@ -62,6 +68,8 @@ AFRAME.registerComponent('markers_start',{
 
                    markerEl.appendChild(salamanderMarker);
 
+
+
               }
               else {
                  switchStatus = $(this).is(':checked');
@@ -70,7 +78,9 @@ AFRAME.registerComponent('markers_start',{
                    console.log(markerEl);
 
                    // Remove entity camera
-                   var cameraMarker = document.querySelector('a-entity');
+                   // var cameraMarker = document.querySelector('a-entity');
+                   // cameraMarker.parentNode.removeChild(cameraMarker);
+                   var cameraMarker = document.getElementById('cameramarker');
                    cameraMarker.parentNode.removeChild(cameraMarker);
 
 
