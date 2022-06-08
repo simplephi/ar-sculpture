@@ -38,12 +38,16 @@ AFRAME.registerComponent('markers_start',{
               if ($(this).is(':checked')) {
                   switchStatus = $(this).is(':checked');
                    alert(switchStatus);// To verify
-                   console.log(switchStatus);
+                   console.log(switchStatus, "True");
+
+
               }
               else {
                  switchStatus = $(this).is(':checked');
                   alert(switchStatus);// To verify
-                   console.log(switchStatus);
+                   console.log(switchStatus, "False");
+
+
               }
           });
 
