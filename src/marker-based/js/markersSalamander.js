@@ -76,8 +76,8 @@ AFRAME.registerComponent('markers_start',{
                  else if(entityMarker==1 && entityGps==1){
                    // var modelGps = document.getElementById('salamanderGps');
                    // modelGps.parentNode.removeChild(modelGps);
-                   // var modelGps = document.querySelector('[gps-entity-place]');
-                   // modelGps.parentNode.removeChild(modelGps);
+                   var modelGps = document.querySelector('[gps-entity-place]');
+                   modelGps.parentNode.removeChild(modelGps);
 
 
                    var salamanderMarker = document.createElement('a-entity');
@@ -183,9 +183,9 @@ AFRAME.registerComponent('markers_start',{
                     // entityGps = 0;
                   }
 
-                else if(entityMarker==1 && entityGps == 1){
-                  alert("Location based is activated once.")
-                }
+                // else if(entityMarker==1 && entityGps == 1){
+                //   alert("Location based is activated once.")
+                // }
 
               }
           });
