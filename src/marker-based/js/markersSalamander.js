@@ -180,10 +180,9 @@ AFRAME.registerComponent('markers_start',{
                     // entityGps = 0;
                   }
 
-                // else {
-                //   var modelGps = document.getElementById('salamanderGps');
-                //   modelGps.parentNode.removeChild(modelGps);
-                // }
+                else if(entityMarker==1 && entityGps = 1){
+                  alert("Location based is activated once.")
+                }
 
               }
           });
