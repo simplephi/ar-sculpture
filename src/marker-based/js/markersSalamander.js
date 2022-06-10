@@ -183,7 +183,7 @@ AFRAME.registerComponent('markers_start',{
                     // entityGps = 0;
                   }
 
-                else if(entityMarker==1 && entityGps = 1){
+                else if(entityMarker==1 && entityGps == 1){
                   alert("Location based is activated once.")
                 }
 
