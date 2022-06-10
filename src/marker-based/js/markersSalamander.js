@@ -76,8 +76,8 @@ AFRAME.registerComponent('markers_start',{
                  else if(entityMarker==1 && entityGps==1){
                    // var modelGps = document.getElementById('salamanderGps');
                    // modelGps.parentNode.removeChild(modelGps);
-                   var modelGps = document.querySelector('[gps-entity-place]');
-                   modelGps.parentNode.removeChild(modelGps);
+                   // var modelGps = document.querySelector('[gps-entity-place]');
+                   // modelGps.parentNode.removeChild(modelGps);
 
 
                    var salamanderMarker = document.createElement('a-entity');
@@ -136,18 +136,11 @@ AFRAME.registerComponent('markers_start',{
                              lat: position.coords.latitude,
                              lng: position.coords.longitude
                            });
-                           // console.log('stringified coordinates', newCoordinates);
-                           // localStorage.setItem('coords', newCoordinates);
-
 
                             // CREATE
                            var body = document.querySelector('a-scene');
 
                            var salamander = document.createElement('a-entity');
-
-                           // spiral.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
-
-
 
                             salamander.setAttribute('gltf-model', '#salamander');
                             salamander.setAttribute('animation-mixer', '');
@@ -180,14 +173,14 @@ AFRAME.registerComponent('markers_start',{
                      });
                     ////////////////////////////////////////////////////////////////////////////////////
 
-                    // entityGps = 0;
+                    entityGps = 1;
                   }
 
-                // else if(entityMarker==1 && entityGps == 1){
-                //   var modelMarker = document.getElementById('salamanderMarker');
-                //   modelMarker.parentNode.removeChild(modelMarker);
-                //   alert("Location based is activated once.")
-                // }
+                else if(entityMarker==1 && entityGps == 1){
+                  var modelMarker = document.getElementById('salamanderMarker');
+                  modelMarker.parentNode.removeChild(modelMarker);
+                  alert("Location based is activated once.");
+                }
 
               }
           });
