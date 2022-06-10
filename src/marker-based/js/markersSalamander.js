@@ -74,8 +74,11 @@ AFRAME.registerComponent('markers_start',{
 
                  }
                  else if(entityMarker==1 && entityGps==1){
-                   var modelGps = document.getElementById('salamanderGps');
+                   // var modelGps = document.getElementById('salamanderGps');
+                   // modelGps.parentNode.removeChild(modelGps);
+                   var modelGps = document.querySelector('[gps-entity-place]');
                    modelGps.parentNode.removeChild(modelGps);
+
 
                    var salamanderMarker = document.createElement('a-entity');
 
