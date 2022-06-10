@@ -92,8 +92,8 @@ AFRAME.registerComponent('markers_start',{
 
                    markerEl.appendChild(salamanderMarker);
 
-                   entityMarker = 1;
-                   entityGps = 0;
+                   // entityMarker = 1;
+                   // entityGps = 0;
 
                  }
 
@@ -118,8 +118,8 @@ AFRAME.registerComponent('markers_start',{
                   // cameraGPS.setAttribute('rotation-reader', '');
                   // sceneEl.appendChild(cameraGPS);
 
-                  entityGps = 1;
-                  if(entityMarker==1){
+                  // entityGps == 1;
+                  if(entityMarker==1 && entityGps == 0){
 
                     var modelMarker = document.getElementById('salamanderMarker');
                     modelMarker.parentNode.removeChild(modelMarker);
@@ -184,6 +184,8 @@ AFRAME.registerComponent('markers_start',{
                   }
 
                 // else if(entityMarker==1 && entityGps == 1){
+                //   var modelMarker = document.getElementById('salamanderMarker');
+                //   modelMarker.parentNode.removeChild(modelMarker);
                 //   alert("Location based is activated once.")
                 // }
 
