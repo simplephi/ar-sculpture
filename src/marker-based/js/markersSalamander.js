@@ -121,6 +121,8 @@ AFRAME.registerComponent('markers_start',{
                   // entityGps == 1;
                   if(entityMarker==1 && entityGps == 0){
 
+                    entityGps = 1;
+
                     var modelMarker = document.getElementById('salamanderMarker');
                     modelMarker.parentNode.removeChild(modelMarker);
 
@@ -173,7 +175,7 @@ AFRAME.registerComponent('markers_start',{
                      });
                     ////////////////////////////////////////////////////////////////////////////////////
 
-                    entityGps = 1;
+
                   }
 
                 else if(entityMarker==1 && entityGps == 1){
