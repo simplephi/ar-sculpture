@@ -57,7 +57,7 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('animation-mixer', '');
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
 
-                    marsrobotMarker.object3D.position.set(0, 0, 0);
+                    marsrobotMarker.object3D.position.set(0, 1, -1);
                     marsrobotMarker.object3D.scale.set(0.001, 0.001, 0.001);
                     marsrobotMarker.object3D.rotation.set(0, 0, 0);
 
@@ -80,7 +80,7 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('animation-mixer', '');
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
 
-                    marsrobotMarker.object3D.position.set(0, 0, 0);
+                      marsrobotMarker.object3D.position.set(0, 1, -1);
                     marsrobotMarker.object3D.scale.set(0.001, 0.001, 0.001);
                     marsrobotMarker.object3D.rotation.set(0, 0, 0);
 
@@ -210,7 +210,7 @@ AFRAME.registerComponent('registerevents', {
     console.log("Success Click");
 
      let playing = false;
-     
+
      var audio = document.querySelector('[sound]');
      this.el.addEventListener('click', () => {
           if(!playing) {
