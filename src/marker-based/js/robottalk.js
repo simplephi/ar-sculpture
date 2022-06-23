@@ -128,6 +128,7 @@ AFRAME.registerComponent('markers_start',{
                             marsrobotGps.setAttribute('gltf-model', '#marsrobot');
                             marsrobotGps.setAttribute('animation-mixer', '');
                             marsrobotGps.setAttribute('id', 'marsrobotGps');
+                            marsrobotGps.setAttribute('audiohandler', '');
 
 
                             marsrobotGps.object3D.position.set(0, 0, 0);
@@ -136,8 +137,9 @@ AFRAME.registerComponent('markers_start',{
 
                             marsrobotGps.setAttribute('sound', {
                               src: '#MarsRobotSound',
+                              id: 'sound',
                               volume: 5,
-                              loop: true
+                              on: 'click'
                             });
 
 
@@ -202,3 +204,19 @@ AFRAME.registerComponent('registerevents', {
 			});
 		},
 	});
+
+  AFRAME.registerComponent('audiohandler', {
+  init:function() {
+     let playing = false;
+     var audio = document.querySelector('[sound]');
+     this.el.addEventListener('click', () => {
+          if(!playing) {
+              audio.play();
+           } else {
+              audio.pause();
+              audio.currentTime = 0;
+           }
+           playing = !playing;
+     });
+  }
+})
