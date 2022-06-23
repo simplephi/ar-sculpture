@@ -126,7 +126,7 @@ AFRAME.registerComponent('markers_start',{
                             marsrobotGps.setAttribute('gltf-model', '#marsrobot');
                             marsrobotGps.setAttribute('animation-mixer', '');
                             marsrobotGps.setAttribute('id', 'marsrobotGps');
-                            marsrobotGps.setAttribute('audiohandler', '');
+
 
 
                             marsrobotGps.object3D.position.set(0, 0, 0);
@@ -138,7 +138,7 @@ AFRAME.registerComponent('markers_start',{
                               volume: 5,
                               on: 'click'
                             });
-
+                            marsrobotGps.setAttribute('audiohandler', '');
 
                             marsrobotGps.setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
 
@@ -215,6 +215,8 @@ AFRAME.registerComponent('registerevents', {
               audio.currentTime = 0;
            }
            playing = !playing;
+
+           console.log("Success Play");
      });
   }
 })
