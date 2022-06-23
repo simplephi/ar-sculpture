@@ -31,7 +31,7 @@ AFRAME.registerComponent('markers_start',{
 
 					markerEl.setAttribute('type','pattern');
 
-					markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-robottalk.patt');
+					markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/robotalk.patt');
 					// markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-hiro.patt');
           markerEl.setAttribute('cursor', {
             rayOrigin: 'mouse'
