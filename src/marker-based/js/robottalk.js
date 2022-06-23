@@ -60,7 +60,7 @@ AFRAME.registerComponent('markers_start',{
 
                     marsrobotMarker.setAttribute('sound', {
                       src: '#MarsRobotSound',
-                      on: click,
+                      on: 'click',
                       volume: 5,
                     });
 
