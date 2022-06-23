@@ -55,7 +55,7 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
 
                     marsrobotMarker.object3D.position.set(0, 0, 0);
-                    marsrobotMarker.object3D.scale.set(15, 15, 15);
+                    marsrobotMarker.object3D.scale.set(1, 1, 1);
                     marsrobotMarker.object3D.rotation.set(0, 0, 0);
 
                     marsrobotMarker.setAttribute('sound', {
