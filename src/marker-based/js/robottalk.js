@@ -61,7 +61,6 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('sound', {
                       src: '#MarsRobotSound',
                       volume: 5,
-                      loop: true
                     });
 
                    markerEl.appendChild(marsrobotMarker);
@@ -85,7 +84,6 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('sound', {
                       src: '#MarsRobotSound',
                       volume: 5,
-                      loop: true
                     });
 
                    markerEl.appendChild(marsrobotMarker);
@@ -132,12 +130,11 @@ AFRAME.registerComponent('markers_start',{
 
 
                             marsrobotGps.object3D.position.set(0, 0, 0);
-                            marsrobotGps.object3D.scale.set(1, 1, 1);
+                            marsrobotGps.object3D.scale.set(0.001, 0.001, 0.001);
                             marsrobotGps.object3D.rotation.set(0, 0, 0);
 
                             marsrobotGps.setAttribute('sound', {
                               src: '#MarsRobotSound',
-                              id: 'sound',
                               volume: 5,
                               on: 'click'
                             });
@@ -207,6 +204,7 @@ AFRAME.registerComponent('registerevents', {
 
   AFRAME.registerComponent('audiohandler', {
   init:function() {
+    console.log("Success Click");
      let playing = false;
      var audio = document.querySelector('[sound]');
      this.el.addEventListener('click', () => {
