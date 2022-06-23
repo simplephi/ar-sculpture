@@ -53,14 +53,14 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('gltf-model', '#marsrobot');
                     marsrobotMarker.setAttribute('animation-mixer', '');
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
+                    marsrobotMarker.setAttribute('modelevents', '');
 
                     marsrobotMarker.object3D.position.set(0, 0, 0);
-                    marsrobotMarker.object3D.scale.set(1, 1, 1);
+                    marsrobotMarker.object3D.scale.set(0.01, 0.01, 0.01);
                     marsrobotMarker.object3D.rotation.set(0, 0, 0);
 
                     marsrobotMarker.setAttribute('sound', {
                       src: '#MarsRobotSound',
-                      on: 'click',
                       volume: 5,
                     });
 
@@ -185,6 +185,29 @@ AFRAME.registerComponent('registerevents', {
 			marker.addEventListener("markerLost",() =>{
 				var markerId = marker.id;
 				console.log('Marker Lost: ', markerId);
+			});
+		},
+	});
+
+
+AFRAME.registerComponent('modelevents', {
+		init: function () {
+			const model = this.el;
+
+			model.addEventListener("modelFound", ()=> {
+        var entity = document.querySelector('[sound]');
+        entity.components.sound.playSound();
+
+        console.log('model Found ');
+
+			});
+
+			model.addEventListener("modelLost",() =>{
+
+        var entity = document.querySelector('[sound]');
+        entity.components.sound.stopSound();
+
+				console.log('model Lost ');
 			});
 		},
 	});
