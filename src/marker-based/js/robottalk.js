@@ -208,7 +208,9 @@ AFRAME.registerComponent('registerevents', {
   AFRAME.registerComponent('audiohandler', {
   init:function() {
     console.log("Success Click");
+
      let playing = false;
+     
      var audio = document.querySelector('[sound]');
      this.el.addEventListener('click', () => {
           if(!playing) {
