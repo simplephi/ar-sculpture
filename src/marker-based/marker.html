@@ -3,7 +3,7 @@
 <head>
     <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Marker Based Salamander</title>
+    <title>Marker Based Robot Talk</title>
 </head>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
@@ -11,7 +11,7 @@
 
     <body style="margin : 0px; overflow: hidden;">
 
-        <a-scene markers_start embedded arjs vr-mode-ui="enabled: false">
+        <a-scene markers_start embedded arjs='sourceType: webcam;' vr-mode-ui="enabled: false">
 
           <a-assets>
   			    <!-- <a-asset-item id="salamander" src="../assets/gltf/salamandar_test.gltf"></a-asset-item> -->
@@ -20,19 +20,19 @@
 
 
           <!-- <a-marker-camera preset="hiro"> -->
-
+          <a-entity
+            position="0 0 0"
+            rotation="0 0 0"
+            scale="20 20 20"
+            gltf-model="#salamander"
+            animation-mixer
+          ></a-entity>
           <!-- <a-marker type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-url_qr-black-big.patt"> -->
-          <a-marker type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-frame.patt">
-            <a-entity
-              position="0 0 0"
-              rotation="0 0 0"
-              scale="20 20 20"
-              gltf-model="#salamander"
-              animation-mixer
-            ></a-entity>
-          </a-marker>
+          <a-marker-camera type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-frame.patt">
 
-          <a-entity camera></a-entity>
+          </a-marker-camera>
+
+          <!-- <a-entity camera></a-entity> -->
 
 
         </a-scene>
