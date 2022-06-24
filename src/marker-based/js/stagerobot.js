@@ -53,8 +53,7 @@ AFRAME.registerComponent('markers_start',{
           //   volume: 5,
           // });
 
-         // markerEl.appendChild(marsrobotMarker);
-         sceneEl.appendChild(marsrobotMarker);
+         markerEl.appendChild(marsrobotMarker);
 
 
 
