@@ -58,7 +58,7 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
 
                     marsrobotMarker.object3D.position.set(0, 0, 0);
-                    marsrobotMarker.object3D.scale.set(10, 10, 10);
+                    marsrobotMarker.object3D.scale.set(3, 3, 3);
                     marsrobotMarker.object3D.rotation.set(-90, 0, 0);
 
                     // marsrobotMarker.setAttribute('sound', {
@@ -81,7 +81,7 @@ AFRAME.registerComponent('markers_start',{
                     marsrobotMarker.setAttribute('id', 'marsrobotMarker');
 
                     marsrobotMarker.object3D.position.set(0, 0, 0);
-                    marsrobotMarker.object3D.scale.set(10, 10, 10);
+                    marsrobotMarker.object3D.scale.set(3, 3, 3);
                     marsrobotMarker.object3D.rotation.set(-90, 0, 0);
 
                     // marsrobotMarker.setAttribute('sound', {
@@ -133,7 +133,7 @@ AFRAME.registerComponent('markers_start',{
 
 
                             marsrobotGps.object3D.position.set(0, 0, 0);
-                            marsrobotGps.object3D.scale.set(10, 10, 10);
+                            marsrobotGps.object3D.scale.set(3, 3, 3);
                             marsrobotGps.object3D.rotation.set(0, 0, 0);
 
                             // marsrobotGps.setAttribute('sound', {
