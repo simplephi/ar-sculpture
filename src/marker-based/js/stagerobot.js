@@ -27,7 +27,7 @@ AFRAME.registerComponent('markers_start',{
 
 					var sceneEl = document.querySelector('a-scene');
 
-					var markerEl = document.createElement('a-marker');
+					var markerEl = document.createElement('a-marker-camera');
 
 					markerEl.setAttribute('type','pattern');
 
