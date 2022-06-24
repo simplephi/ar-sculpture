@@ -18,18 +18,16 @@
   <a-scene markers_start embedded arjs vr-mode-ui="enabled: false">
 
     <a-assets>
-      <!-- <a-asset-item id="salamander" src="../assets/gltf/salamandar_test.gltf"></a-asset-item> -->
-      <a-asset-item id="marsrobot" src="./marsrobot.gltf"></a-asset-item>
+      <a-asset-item id="marsrobot" src="./stage_robot_v1.glb"></a-asset-item>
     </a-assets>
 
-    <!-- <a-marker type="pattern" url="https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/pattern-url_qr-black-big.patt"> -->
     <a-marker registerevents type="pattern" url="./robotalk.patt" >
-      <a-entity position="0 0 0" rotation="0 0 0" scale="0.001 0.001 0.001" gltf-model="#marsrobot" sound="src: #MarsRobotSound; volume: 5" animation-mixer>
+      <a-entity position="0 0 0" rotation="0 -90 0" scale="1 1 1" gltf-model="#marsrobot" sound="src: #MarsRobotSound; volume: 5" animation-mixer>
       </a-entity>
     </a-marker>
 
     <a-assets>
-      <audio id="MarsRobotSound" src="konnichiha.wav"></audio>
+      <audio id="MarsRobotSound" src="konnichihawoman.mp3"></audio>
     </a-assets>
 
     <a-entity camera></a-entity>
