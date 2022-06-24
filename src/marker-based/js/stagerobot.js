@@ -29,7 +29,7 @@ AFRAME.registerComponent('markers_start',{
 					markerEl.setAttribute('type','pattern');
 
 					markerEl.setAttribute('url','https://raw.githubusercontent.com/simplephi/ar-sculpture/main/src/assets/robotalk.patt');
-				markerEl.setAttribute('cursor', {
+				  markerEl.setAttribute('cursor', {
             rayOrigin: 'mouse'
 
           });
@@ -46,7 +46,7 @@ AFRAME.registerComponent('markers_start',{
 
           marsrobotMarker.object3D.position.set(0, 0, 0);
           marsrobotMarker.object3D.scale.set(1, 1, 1);
-          marsrobotMarker.object3D.rotation.set(-90, -90, 0);
+          marsrobotMarker.object3D.rotation.set(0, -90, 0);
 
           // marsrobotMarker.setAttribute('sound', {
           //   src: '#MarsRobotSound',
