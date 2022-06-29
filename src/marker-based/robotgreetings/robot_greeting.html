@@ -17,7 +17,7 @@
 
   <a-scene markers_start embedded arjs renderer=" physicallyCorrectLights: true; colorManagement: true;" vr-mode-ui="enabled: false">
 
-    <a-entity light="type: ambient;  intensity: 10"></a-entity>
+    <!-- <a-entity light="type: ambient;  intensity: 10"></a-entity> -->
 
     <a-assets>
       <!-- <a-asset-item id="marsrobot" src="./robotTalkingIntro20220627.gltf"></a-asset-item> -->
@@ -25,7 +25,7 @@
     </a-assets>
 
     <a-marker registerevents type="pattern" url="./robot_talk2.patt" >
-      <a-entity position="0 0 0" rotation="0 0 0" scale="0.0001 0.0001 0.0001" gltf-model="#TalkingRobot" sound="src: #TalkingRobotSound; volume: 10; loop: true" >
+      <a-entity position="0 0 0" rotation="0 0 0" scale="0.001 0.001 0.001" gltf-model="#TalkingRobot" sound="src: #TalkingRobotSound; volume: 10; loop: true" >
       </a-entity>
     </a-marker>
 
