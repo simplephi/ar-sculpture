@@ -58,7 +58,7 @@ AFRAME.registerComponent('registerevents', {
 			marker.addEventListener("markerLost",() =>{
 
         var sceneEl = document.querySelector('a-entity');
-        sceneEl.removeAttribute('animation-mixer', '');
+        sceneEl.removeAttribute('animation-mixer');
 
         var entity = document.querySelector('[sound]');
         entity.components.sound.stopSound();
