@@ -125,11 +125,11 @@ function initialize()
 	function onError(xhr) { console.log( 'An error happened' ); }
 
 
-
+		// Modify from here
 
 		var loader = new THREE.GLTFLoader();
 
-		loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, './brushes'));
+		// loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, './brushes'));
 
 
     // Load a glTF resource
@@ -155,6 +155,11 @@ function initialize()
       	onProgress,
         onError
     );
+
+
+		// Modify to here
+
+
 }
 
 
