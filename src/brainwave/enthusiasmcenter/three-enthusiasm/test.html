@@ -8,8 +8,7 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js"></script> -->
 	<!-- GLTFLoader.js -->
 	<!-- <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script> -->
-	<script src="https://rawcdn.githack.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
-	<script src="https://rawcdn.githack.com/mrdoob/three.js/r128/examples/js/loaders/DRACOLoader.js"></script>
+	<script src="https://rawcdn.githack.com/mrdoob/three.js/r139/examples/js/loaders/GLTFLoader.js"></script>
 	<!-- include jsartookit -->
 	<script src="./jsartoolkit5/artoolkit.min.js"></script>
 	<script src="./jsartoolkit5/artoolkit.api.js"></script>
@@ -132,9 +131,9 @@ function initialize()
 		var loader = new THREE.GLTFLoader();
 
 		loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
-		const dracoLoader = new DRACOLoader();
-		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-		loader.setDRACOLoader(dracoLoader);
+		// const dracoLoader = new THREE.DRACOLoader();
+		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		// loader.setDRACOLoader(dracoLoader);
 
     // Load a glTF resource
     loader.load(
