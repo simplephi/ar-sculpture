@@ -3,6 +3,7 @@
 <!-- three.js library -->
 <script src='./vendor/three.js/build/three.js'></script>
 <script src='./vendor/three.js/GLTFLoader.js'></script>
+<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script>
 <!-- ar.js -->
 <script src="./build/ar-threex.js"></script>
 
@@ -175,6 +176,10 @@
 		var loader = new THREE.GLTFLoader();
 
 		loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
+		const dracoLoader = new THREE.DRACOLoader();
+		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		loader.setDRACOLoader(dracoLoader);
+		
 		loader.load(
 				// resource URL
 				'./models/enthusiasmcenter.glb',
