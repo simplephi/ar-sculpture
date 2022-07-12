@@ -57,8 +57,8 @@
 			// to read from the webcam
 			sourceType: 'webcam',
 
-			sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
-			sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
+			// sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
+			// sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
 
 			// // to read from an image
 			// sourceType : 'image',
@@ -176,9 +176,9 @@
 		var loader = new THREE.GLTFLoader();
 
 		loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
-		const dracoLoader = new THREE.DRACOLoader();
-		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-		loader.setDRACOLoader(dracoLoader);
+		// const dracoLoader = new THREE.DRACOLoader();
+		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		// loader.setDRACOLoader(dracoLoader);
 
 		loader.load(
 				// resource URL
