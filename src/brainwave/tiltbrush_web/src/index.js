@@ -5,59 +5,236 @@ import { GLTFGoogleTiltBrushMaterialExtension } from "three-icosa";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x202020);
-const gltfLoader = new GLTFLoader();
+//////////////////////////////////////////////////////////////////////////////////
+//		Init
+//////////////////////////////////////////////////////////////////////////////////
 
-const camera = new THREE.PerspectiveCamera(75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000);
-camera.position.set(2, 2, 2);
-camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-// レンダラーの準備
-const renderer = new THREE.WebGLRenderer({ antialias: false });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
+// init renderer
+var renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: true
+});
+renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+renderer.setSize(640, 480);
+renderer.domElement.style.position = 'absolute'
+renderer.domElement.style.top = '0px'
+renderer.domElement.style.left = '0px'
 document.body.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, document.body);
 
-const directionalLight = new THREE.DirectionalLight("#ffffff", 1);
-const directionalLight2 = new THREE.DirectionalLight("#ffffff", 1);
-directionalLight.position.set(10, 10, 0);
-directionalLight2.position.set(-10, -10, 10);
-scene.add(directionalLight);
-scene.add(directionalLight2);
+// array of functions for the rendering loop
+var onRenderFcts = [];
+var arToolkitContext, arMarkerControls;
 
-const amblight = new THREE.AmbientLight();
-scene.add(amblight);
+// init scene and camera
+var scene = new THREE.Scene();
 
-//gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, '../../../assets/brushes/'));
-gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
+//////////////////////////////////////////////////////////////////////////////////
+//		Initialize a basic camera
+//////////////////////////////////////////////////////////////////////////////////
 
-const dracoLoader = new DRACOLoader();
+// Create a camera
+var camera = new THREE.Camera();
+scene.add(camera);
+
+////////////////////////////////////////////////////////////////////////////////
+//          handle arToolkitSource
+////////////////////////////////////////////////////////////////////////////////
+
+var arToolkitSource = new THREEx.ArToolkitSource({
+  // to read from the webcam
+  sourceType: 'webcam',
+
+  sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
+  sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
+
+  // // to read from an image
+  // sourceType : 'image',
+  // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
+
+  // to read from a video
+  // sourceType : 'video',
+  // sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',
+})
+
+arToolkitSource.init(function onReady() {
+  arToolkitSource.domElement.addEventListener('canplay', () => {
+    console.log(
+      'canplay',
+      'actual source dimensions',
+      arToolkitSource.domElement.videoWidth,
+      arToolkitSource.domElement.videoHeight
+    );
+
+    initARContext();
+  });
+  window.arToolkitSource = arToolkitSource;
+  setTimeout(() => {
+    onResize()
+  }, 2000);
+})
+
+// handle resize
+window.addEventListener('resize', function () {
+  onResize()
+})
+
+function onResize() {
+  arToolkitSource.onResizeElement()
+  arToolkitSource.copyElementSizeTo(renderer.domElement)
+  if (window.arToolkitContext.arController !== null) {
+    arToolkitSource.copyElementSizeTo(window.arToolkitContext.arController.canvas)
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
+//          initialize arToolkitContext
+////////////////////////////////////////////////////////////////////////////////
+
+
+function initARContext() { // create atToolkitContext
+  arToolkitContext = new THREEx.ArToolkitContext({
+    cameraParametersUrl: THREEx.ArToolkitContext.baseURL + './data/camera_para.dat',
+    detectionMode: 'mono'
+  })
+  // initialize it
+  arToolkitContext.init(() => { // copy projection matrix to camera
+    camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
+
+    arToolkitContext.arController.orientation = getSourceOrientation();
+    arToolkitContext.arController.options.orientation = getSourceOrientation();
+
+    console.log('arToolkitContext', arToolkitContext);
+    window.arToolkitContext = arToolkitContext;
+  })
+
+  // MARKER
+  arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
+    type: 'pattern',
+    patternUrl: THREEx.ArToolkitContext.baseURL + './data/pattern-enthusiasmcenter.patt',
+    // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
+    // as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
+    changeMatrixMode: 'cameraTransformMatrix'
+  })
+
+  scene.visible = false
+
+  console.log('ArMarkerControls', arMarkerControls);
+  window.arMarkerControls = arMarkerControls;
+}
+
+
+function getSourceOrientation() {
+  if (!arToolkitSource) {
+    return null;
+  }
+
+  console.log(
+    'actual source dimensions',
+    arToolkitSource.domElement.videoWidth,
+    arToolkitSource.domElement.videoHeight
+  );
+
+  if (arToolkitSource.domElement.videoWidth > arToolkitSource.domElement.videoHeight) {
+    console.log('source orientation', 'landscape');
+    return 'landscape';
+  } else {
+    console.log('source orientation', 'portrait');
+    return 'portrait';
+  }
+}
+
+// update artoolkit on every frame
+onRenderFcts.push(function () {
+  if (!arToolkitContext || !arToolkitSource || !arToolkitSource.ready) {
+    return;
+  }
+
+  arToolkitContext.update(arToolkitSource.domElement)
+
+  // update scene.visible if the marker is seen
+  scene.visible = camera.visible
+})
+
+//////////////////////////////////////////////////////////////////////////////////
+//		add an object in the scene
+//////////////////////////////////////////////////////////////////////////////////
+// function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
+// function onError(xhr) { console.log( 'An error happened' ); }
+
+var loader = new THREE.GLTFLoader();
+
+loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
+const dracoLoader = new THREE.DRACOLoader();
 dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-gltfLoader.setDRACOLoader(dracoLoader);
+loader.setDRACOLoader(dracoLoader);
 
-loadGltf('./assets/enthusiasmcenter/glb/enthusiasmcenter.glb');
+loader.load(
+    // resource URL
+    './models/enthusiasmcenter.glb',
+    // called when the resource is loaded
+    function ( gltf ) {
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
-const box = new THREE.Mesh(geometry, material);
-box.position.z = -5;
-scene.add(box);
+            mesh = gltf.scene;
+            mesh.scale.set( 3, 3, 3 );
+            scene.add( mesh );
 
-function animate() {
-    requestAnimationFrame(animate);
-    box.rotation.x += 0.01;
-    box.rotation.y += 0.01;
-    renderer.render(scene, camera);
-}
-animate();
+            //scene.add( gltf.scene );
 
-async function loadGltf(url) {
-    const gltf = await gltfLoader.loadAsync(url);
-    const loadedModel = gltf.scene;
-    scene.add(loadedModel);
-}
+            //gltf.animations; // Array<THREE.AnimationClip>
+            //gltf.scene; // THREE.Scene
+            //gltf.scenes; // Array<THREE.Scene>
+            //gltf.cameras; // Array<THREE.Camera>
+            //gltf.asset; // Object
+
+    }
+    // ,
+    // onProgress,
+    // onError
+);
+
+
+// add a torus knot
+// var geometry = new THREE.BoxGeometry(1, 1, 1);
+// var material = new THREE.MeshNormalMaterial({
+// 	transparent: true,
+// 	opacity: 0.5,
+// 	side: THREE.DoubleSide
+// });
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = geometry.parameters.height / 2
+// scene.add(mesh);
+
+
+//
+// var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+// var material = new THREE.MeshNormalMaterial();
+// var mesh = new THREE.Mesh(geometry, material);
+// mesh.position.y = 0.5
+// scene.add(mesh);
+//
+// onRenderFcts.push(function (delta) {
+// 	mesh.rotation.x += Math.PI * delta
+// })
+
+//////////////////////////////////////////////////////////////////////////////////
+//		render the whole thing on the page
+//////////////////////////////////////////////////////////////////////////////////
+
+// render the scene
+onRenderFcts.push(function () {
+  renderer.render(scene, camera);
+})
+
+// run the rendering loop
+var lastTimeMsec = null
+requestAnimationFrame(function animate(nowMsec) {
+  // keep looping
+  requestAnimationFrame(animate);
+  // measure time
+  lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60
+  var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
+  lastTimeMsec = nowMsec
+  // call each update function
+  onRenderFcts.forEach(function (onRenderFct) {
+    onRenderFct(deltaMsec / 1000, nowMsec / 1000)
+  })
+})
