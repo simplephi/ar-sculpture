@@ -173,13 +173,13 @@
 		function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 		function onError(xhr) { console.log( 'An error happened' ); }
 
-		var loader = new THREE.GLTFLoader();
+		var loader = new GLTFLoader();
 
 		loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
 		const dracoLoader = new THREE.DRACOLoader();
 		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 		loader.setDRACOLoader(dracoLoader);
-		
+
 		loader.load(
 				// resource URL
 				'./models/enthusiasmcenter.glb',
