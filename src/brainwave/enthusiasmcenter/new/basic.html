@@ -17,7 +17,6 @@
 
 
 	<script type="module">
-	var markerRoot1;
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
@@ -175,14 +174,13 @@
 		// function onError(xhr) { console.log( 'An error happened' ); }
 
 		// build markerControls
-		markerRoot1 = new THREE.Group();
-		scene.add(markerRoot1);
+
 
 
 		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
-		markerRoot1.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
+		await viewer.loadGltf("./models/enthusiasmcenter.glb");
 		// scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 
 		// var gltfLoader = new THREE.GLTFLoader();
