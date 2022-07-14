@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
 <!-- three.js library -->
-<!-- <script src='./vendor/three.js/build/three.js'></script> -->
+<script src='./vendor/three.js/build/three.js'></script>
 <!-- <script src='./vendor/three.js/build/examples/js/loaders/GLTFLoader.js'></script> -->
-<!-- <script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/GLTFLoader.js"></script> -->
-<!-- <script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script> -->
-
+<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script>
+<!-- ar.js -->
+<script src="./build/ar-threex.js"></script>
+<script>THREEx.ArToolkitContext.baseURL = './'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 	<script type="importmap">
 			{
 				"imports": {
-					"three": "./modul/three/build/three.module.js",
-					"three-icosa": "./modul/three-icosa/build/three-icosa.module.js",
-					"threex": "./build/ar-threex.js",
-
+					"three-icosa": "./modul/three-icosa/build/three-icosa.module.js"
 				}
 			}
 		</script>
 
-	<!-- ar.js -->
-	<!-- <script src="./build/ar-threex.js"></script>
-	<script>THREEx.ArToolkitContext.baseURL = './'</script> -->
+
 
 	<script type="module">
 		//////////////////////////////////////////////////////////////////////////////////
-		import * as THREE from "three";
-		import * as THREEx from "threex";
-		import { GLTFLoader } from './modul/three/examples/jsm/loaders/GLTFLoader';
-		import { DRACOLoader } from './modul/three/examples/jsm/loaders/DRACOLoader';
+
 		import { GLTFGoogleTiltBrushMaterialExtension } from "three-icosa";
 
 		//		Init
