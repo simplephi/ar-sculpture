@@ -11,21 +11,22 @@
 	<script type="importmap">
 			{
 				"imports": {
-					"three": "./three/build/three.module.js",
-					"three-icosa": "./three-icosa/build/three-icosa.module.js",
+					"three": "./modul/three/build/three.module.js",
+					"three-icosa": "./modul/three-icosa/build/three-icosa.module.js",
+					"threex": "./build/ar-threex.js",
 
 				}
 			}
 		</script>
 
 	<!-- ar.js -->
-	<script src="./build/ar-threex.js"></script>
-	<script>THREEx.ArToolkitContext.baseURL = './'</script>
+	<!-- <script src="./build/ar-threex.js"></script>
+	<script>THREEx.ArToolkitContext.baseURL = './'</script> -->
 
 	<script type="module">
 		//////////////////////////////////////////////////////////////////////////////////
 		import * as THREE from "three";
-		// import * as THREEx from "threex";
+		import * as THREEx from "threex";
 		import { GLTFLoader } from './modul/three/examples/jsm/loaders/GLTFLoader';
 		import { DRACOLoader } from './modul/three/examples/jsm/loaders/DRACOLoader';
 		import { GLTFGoogleTiltBrushMaterialExtension } from "three-icosa";
