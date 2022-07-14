@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
 <!-- three.js library -->
-<script src='./vendor/three.js/build/three.js'></script>
+<!-- <script src='./vendor/three.js/build/three.js'></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js"></script>
 <!-- <script src='./vendor/three.js/build/examples/js/loaders/GLTFLoader.js'></script> -->
-<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script>
+<script src="https://rawcdn.githack.com/mrdoob/three.js/r134/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://rawcdn.githack.com/mrdoob/three.js/r134/examples/js/loaders/DRACOLoader.js"></script>
 <!-- ar.js -->
 <script src="./build/ar-threex.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
 <script type="module">
-	import { GLTFGoogleTiltBrushMaterialExtension } from './modul/three-icosa/three-icosa.module.js';
+	import { GLTFGoogleTiltBrushMaterialExtension } from './modul/three-icosa/three-icosa.js';
 </script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
