@@ -9,7 +9,7 @@
 <script src="./build/ar-threex.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
-<script src="./modul/three-icosa/three-icosa.js"></script>
+<!-- <script type="module" src="./modul/three-icosa/three-icosa.module.js"></script> -->
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 	<!-- <script type="importmap">
@@ -20,7 +20,8 @@
 			}
 		</script> -->
 
-	<script>
+	<script type="module">
+	import { GLTFGoogleTiltBrushMaterialExtension } from './modul/three-icosa//three-icosa.module.js';
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
 		//////////////////////////////////////////////////////////////////////////////////
