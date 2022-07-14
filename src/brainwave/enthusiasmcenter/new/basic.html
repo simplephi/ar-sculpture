@@ -176,7 +176,7 @@
 		// function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 		// function onError(xhr) { console.log( 'An error happened' ); }
 
-		var gltfLoader = new Three.GLTFLoader();
+		var gltfLoader = new THREE.GLTFLoader();
 
 		gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
 		const dracoLoader = new THREE.DRACOLoader();
