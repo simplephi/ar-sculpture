@@ -17,7 +17,7 @@
 
 
 	<script type="module">
-
+	var markerRoot1;
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
@@ -174,14 +174,18 @@
 		// function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 		// function onError(xhr) { console.log( 'An error happened' ); }
 
+		// build markerControls
+		markerRoot1 = new THREE.Group();
+		scene.add(markerRoot1);
+
 
 		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
-
+		markerRoot1.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 		// scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 
-		var gltfLoader = new THREE.GLTFLoader();
+		// var gltfLoader = new THREE.GLTFLoader();
 
 		// gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
 		// const dracoLoader = new THREE.DRACOLoader();
@@ -202,19 +206,19 @@
 
 
 
-		gltfLoader.load(
-				// resource URL
-				'./models/enthusiasmcenter.glb',
-				// called when the resource is loaded
-				function ( gltf ) {
-
-								mesh = gltf.scene;
-								mesh.scale.set( 3, 3, 3 );
-								scene.add( mesh );
-
-				}
-
-		);
+		// gltfLoader.load(
+		// 		// resource URL
+		// 		'./models/enthusiasmcenter.glb',
+		// 		// called when the resource is loaded
+		// 		function ( gltf ) {
+		//
+		// 						mesh = gltf.scene;
+		// 						mesh.scale.set( 3, 3, 3 );
+		// 						scene.add( mesh );
+		//
+		// 		}
+		//
+		// );
 
 
 		//////////////////////////////////////////////////////////////////////////////////
