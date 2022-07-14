@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
 <!-- three.js library -->
-<script src='./vendor/three.js/build/three.js'></script>
+<!-- <script src='./vendor/three.js/build/three.js'></script> -->
 <!-- <script src='./vendor/three.js/build/examples/js/loaders/GLTFLoader.js'></script> -->
-<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script>
+<!-- <script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/GLTFLoader.js"></script> -->
+<!-- <script src="https://rawcdn.githack.com/mrdoob/three.js/r132/examples/js/loaders/DRACOLoader.js"></script> -->
 <!-- ar.js -->
 <script src="./build/ar-threex.js"></script>
 <script src="./build/ar-threex.js"></script>
-
-<!-- Three Icosa -->
-	<script type="module" src="./three-icosa/three-icosa.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-	<!-- <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
-		<a href="https://github.com/AR-js-org/AR.js/" target="_blank">AR.js</a> - three.js camera transform
-		<br />
-		Contact me any time at <a href='https://twitter.com/nicolocarp' target='_blank'>@nicolocarp</a>
-	</div> -->
-	<script>
+
+	<script type="module">
 		//////////////////////////////////////////////////////////////////////////////////
+		import * as THREE from "three";
+		import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+		import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+		import { GLTFGoogleTiltBrushMaterialExtension } from "three-icosa";
+		import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+
 		//		Init
 		//////////////////////////////////////////////////////////////////////////////////
 
@@ -175,60 +174,36 @@
 		// function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 		// function onError(xhr) { console.log( 'An error happened' ); }
 
-		var loader = new THREE.GLTFLoader();
+		var gltfLoader = new GLTFLoader();
 
-		// loader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
-		// const dracoLoader = new THREE.DRACOLoader();
-		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-		// loader.setDRACOLoader(dracoLoader);
+		gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
+		const dracoLoader = new DRACOLoader();
+		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		gltfLoader.setDRACOLoader(dracoLoader);
 
-		loader.load(
-				// resource URL
-				'./models/enthusiasmcenter.glb',
-				// called when the resource is loaded
-				function ( gltf ) {
+		loadGltf('./models/enthusiasmcenter.glb');
 
-								mesh = gltf.scene;
-								mesh.scale.set( 3, 3, 3 );
-								scene.add( mesh );
+		async function loadGltf(url) {
+	    const gltf = await gltfLoader.loadAsync(url);
+	    const loadedModel = gltf.scene;
+			loadedModel.scale.set( 3, 3, 3 );
+	    scene.add(loadedModel);
+		}
 
-								//scene.add( gltf.scene );
-
-								//gltf.animations; // Array<THREE.AnimationClip>
-								//gltf.scene; // THREE.Scene
-								//gltf.scenes; // Array<THREE.Scene>
-								//gltf.cameras; // Array<THREE.Camera>
-								//gltf.asset; // Object
-
-				}
-				// ,
-				// onProgress,
-				// onError
-		);
-
-
-		// add a torus knot
-		// var geometry = new THREE.BoxGeometry(1, 1, 1);
-		// var material = new THREE.MeshNormalMaterial({
-		// 	transparent: true,
-		// 	opacity: 0.5,
-		// 	side: THREE.DoubleSide
-		// });
-		// var mesh = new THREE.Mesh(geometry, material);
-		// mesh.position.y = geometry.parameters.height / 2
-		// scene.add(mesh);
-
-
+		// gltfLoader.load(
+		// 		// resource URL
+		// 		'./models/enthusiasmcenter.glb',
+		// 		// called when the resource is loaded
+		// 		function ( gltf ) {
 		//
-		// var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-		// var material = new THREE.MeshNormalMaterial();
-		// var mesh = new THREE.Mesh(geometry, material);
-		// mesh.position.y = 0.5
-		// scene.add(mesh);
+		// 						mesh = gltf.scene;
+		// 						mesh.scale.set( 3, 3, 3 );
+		// 						scene.add( mesh );
 		//
-		// onRenderFcts.push(function (delta) {
-		// 	mesh.rotation.x += Math.PI * delta
-		// })
+		// 		}
+		//
+		// );
+
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the whole thing on the page
