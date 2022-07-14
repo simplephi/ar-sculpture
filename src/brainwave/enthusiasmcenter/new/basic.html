@@ -179,9 +179,9 @@
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
 
-		scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
+		// scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 
-		// var gltfLoader = new THREE.GLTFLoader();
+		var gltfLoader = new THREE.GLTFLoader();
 
 		// gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
 		// const dracoLoader = new THREE.DRACOLoader();
@@ -202,19 +202,19 @@
 
 
 
-		// gltfLoader.load(
-		// 		// resource URL
-		// 		'./models/enthusiasmcenter.glb',
-		// 		// called when the resource is loaded
-		// 		function ( gltf ) {
-		//
-		// 						mesh = gltf.scene;
-		// 						mesh.scale.set( 3, 3, 3 );
-		// 						scene.add( mesh );
-		//
-		// 		}
-		//
-		// );
+		gltfLoader.load(
+				// resource URL
+				'./models/enthusiasmcenter.glb',
+				// called when the resource is loaded
+				function ( gltf ) {
+
+								mesh = gltf.scene;
+								mesh.scale.set( 3, 3, 3 );
+								scene.add( mesh );
+
+				}
+
+		);
 
 
 		//////////////////////////////////////////////////////////////////////////////////
