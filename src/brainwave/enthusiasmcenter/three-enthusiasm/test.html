@@ -34,6 +34,7 @@
 
 
 <script type="module">
+import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
 
 var scene, camera, renderer, clock, deltaTime, totalTime;
 
@@ -139,7 +140,7 @@ function initialize()
 		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 		// loader.setDRACOLoader(dracoLoader);
 
-		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
+
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
 		 markerRoot1.add(await viewer.loadGltf("./models/enthusiasmcenter.glb"));
