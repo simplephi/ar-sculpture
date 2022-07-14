@@ -200,10 +200,11 @@
 
 		async function loadGltf(url) {
 	    // const gltf = await gltfLoader.loadAsync(url);
+			// const loadedModel = gltf.scene;
+			// loadedModel.scale.set( 3, 3, 3 );
 	    const gltf = await viewer.loadGltf(url);
+			gltf.scale.set( 3, 3, 3 );
 
-	    const loadedModel = gltf.scene;
-			loadedModel.scale.set( 3, 3, 3 );
 	    scene.add(loadedModel);
 		}
 
