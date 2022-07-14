@@ -180,7 +180,7 @@
 		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
-		await viewer.loadGltf("./models/enthusiasmcenter.glb");
+		var hasil  = await viewer.loadGltf("./models/enthusiasmcenter.glb");
 		// scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 
 		// var gltfLoader = new THREE.GLTFLoader();
@@ -225,7 +225,8 @@
 
 		// render the scene
 		onRenderFcts.push(function () {
-			renderer.render(scene, camera);
+			renderer.render(scene, camera, hasil);
+			// renderer.render(scene, camera);
 		})
 
 		// run the rendering loop
