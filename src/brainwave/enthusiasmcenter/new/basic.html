@@ -12,20 +12,22 @@
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
 <!-- <script src="./modul/three-icosa/three-icosa.js"></script> -->
-<script type="module">
-	import { GLTFGoogleTiltBrushMaterialExtension } from './modul/three-icosa/three-icosa.module.js';
-</script>
+
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-	<!-- <script type="importmap">
+	<script type="importmap">
 			{
 				"imports": {
 					"three-icosa": "./modul/three-icosa/build/three-icosa.module.js"
 				}
 			}
-		</script> -->
+		</script>
 
-	<script>
+		<script type="module">
+			import { GLTFGoogleTiltBrushMaterialExtension } from 'three-icosa';
+		</script>
+
+	<script type="module">
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
