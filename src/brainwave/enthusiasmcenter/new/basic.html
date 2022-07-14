@@ -177,30 +177,30 @@
 
 
 
-		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
+		// import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
 
-	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
-		var hasil  = await viewer.loadGltf("./models/enthusiasmcenter.glb");
+	  // var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
+		// var hasil  = await viewer.loadGltf("./models/enthusiasmcenter.glb");
 		// scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb"));
 
-		// var gltfLoader = new THREE.GLTFLoader();
+		import { GLTFGoogleTiltBrushMaterialExtension } from "./modul/three-icosa/three-icosa.module.js";
+		var gltfLoader = new THREE.GLTFLoader();
 
-		// gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
-		// const dracoLoader = new THREE.DRACOLoader();
-		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-		// gltfLoader.setDRACOLoader(dracoLoader);
+		gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
+		const dracoLoader = new THREE.DRACOLoader();
+		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		gltfLoader.setDRACOLoader(dracoLoader);
 
-		// loadGltf('./models/enthusiasmcenter.glb');
-		// async function loadGltf(url) {
-	  //   // const gltf = await gltfLoader.loadAsync(url);
-		// 	// const loadedModel = gltf.scene;
-		// 	// loadedModel.scale.set( 3, 3, 3 );
-		// 	// scene.add(loadedModel);
+		loadGltf('./models/enthusiasmcenter.glb');
+
+		async function loadGltf(url) {
+	    const gltf = await gltfLoader.loadAsync(url);
+			const loadedModel = gltf.scene;
+			scene.add(loadedModel);
 	  //   const gltf = await viewer.loadGltf(url);
 		// 	// gltf.scale.set( 3, 3, 3 );
 		//
-	  //   scene.add(gltf);
-		// }
+		}
 
 
 
@@ -225,7 +225,7 @@
 
 		// render the scene
 		onRenderFcts.push(function () {
-			renderer.render(scene, camera, hasil);
+			renderer.render(scene, camera);
 			// renderer.render(scene, camera);
 		})
 
