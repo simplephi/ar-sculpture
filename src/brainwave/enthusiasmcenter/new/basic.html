@@ -176,10 +176,11 @@
 
 
 		import { Viewer } from "./icosa-viewer/hasil/icosa-viewer.module.js";
+		import { GLTFGoogleTiltBrushMaterialExtension } from './modul/three-icosa/three-icosa.module.js';
 
 	  var viewer = new Viewer("https://icosa-gallery.github.io/three-icosa-template/brushes/");
-		
-		scene.add(await viewer.loadGltf("./models/enthusiasmcenter.glb'"););
+
+		scene.add(viewer.loadGltf("./models/enthusiasmcenter.glb'");
 
 		// var gltfLoader = new THREE.GLTFLoader();
 
