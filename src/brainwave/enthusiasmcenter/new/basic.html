@@ -2,8 +2,7 @@
 <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
 <title>Hello, AR!</title>
 <!-- three.js library -->
-<!-- <script src='./vendor/three.js/build/three.js'></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js"></script> -->
+<script src='./vendor/three.js/build/three.js'></script>
 <!-- <script src='./vendor/three.js/build/examples/js/loaders/GLTFLoader.js'></script> -->
 <script src="https://rawcdn.githack.com/mrdoob/three.js/r134/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://rawcdn.githack.com/mrdoob/three.js/r134/examples/js/loaders/DRACOLoader.js"></script>
@@ -11,26 +10,23 @@
 <script src="./build/ar-threex.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = './'</script>
 
-<!-- <script src="./modul/three-icosa/three-icosa.js"></script> -->
+<script src="./modul/three-icosa/three-icosa.js"></script>
 
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-	<script type="importmap">
+	<!-- <script type="importmap">
 			{
 				"imports": {
-					"three": "https://unpkg.com/three/build/three.module.js",
 					"icosa": "./modul/three-icosa/build/three-icosa.module.js"
 				}
 			}
-		</script>
+		</script> -->
 
-		<script type="module">
-			import * as THREE from 'three';
+		<!-- <script type="module">
 			import { GLTFGoogleTiltBrushMaterialExtension } from 'icosa';
-		</script>
+		</script> -->
 
-	<script type="module">
-
+	<script>
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
