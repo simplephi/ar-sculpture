@@ -5,7 +5,7 @@
  * Released under the Apache 2.0 Licence.
  */
 
-import { Vector4, Vector3, Loader, FileLoader, TextureLoader, RepeatWrapping, UniformsLib, RawShaderMaterial, Clock } from '../../modul/three/build/three.js';
+import { Vector4, Vector3, Loader, FileLoader, TextureLoader, RepeatWrapping, UniformsLib, RawShaderMaterial, Clock } from '../../modul/three/build/three.module.js';
 
 // Copyright 2021-2022 Icosa Gallery
 
