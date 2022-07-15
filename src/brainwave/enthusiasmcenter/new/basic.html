@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <title>Hello, AR!</title>
 <!-- three.js library -->
 <script src='./vendor/three.js/build/three.js'></script>
@@ -44,8 +44,8 @@
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Initialize a Light
 		//////////////////////////////////////////////////////////////////////////////////
-		const directionalLight = new THREE.DirectionalLight("#ffffff", 10);
-		const directionalLight2 = new THREE.DirectionalLight("#ffffff", 10);
+		const directionalLight = new THREE.DirectionalLight("#ffffff", 1);
+		const directionalLight2 = new THREE.DirectionalLight("#ffffff", 1);
 		directionalLight.position.set(10, 10, 0);
 		directionalLight2.position.set(-10, -10, 10);
 		scene.add(directionalLight);
@@ -70,8 +70,8 @@
 			// to read from the webcam
 			sourceType: 'webcam',
 
-			// sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
-			// sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
+			sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
+			sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
 
 			// // to read from an image
 			// sourceType : 'image',
