@@ -27,7 +27,7 @@
 			antialias: true,
 			alpha: true
 		});
-		renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+		// renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 		renderer.setSize(640, 480);
 		renderer.domElement.style.position = 'absolute'
 		renderer.domElement.style.top = '0px'
@@ -40,6 +40,12 @@
 
 		// init scene and camera
 		var scene = new THREE.Scene();
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		Initialize a Light
+		//////////////////////////////////////////////////////////////////////////////////
+		var ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
+		scene.add( ambientLight );
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Initialize a basic camera
@@ -187,9 +193,9 @@
 		var gltfLoader = new THREE.GLTFLoader();
 
 		gltfLoader.register(parser => new GLTFGoogleTiltBrushMaterialExtension(parser, 'https://icosa-gallery.github.io/three-icosa-template/brushes/'));
-		const dracoLoader = new THREE.DRACOLoader();
-		dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-		gltfLoader.setDRACOLoader(dracoLoader);
+		// const dracoLoader = new THREE.DRACOLoader();
+		// dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+		// gltfLoader.setDRACOLoader(dracoLoader);
 
 		loadGltf('./models/enthusiasmcenter.glb');
 
