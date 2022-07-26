@@ -41,11 +41,11 @@
   <a-scene embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
 
     <a-assets>
-      <a-asset-item id="keeponAnimation" src="./keepon_fix.glb"></a-asset-item>
+      <a-asset-item id="childAnimation" src="./keepon_fix.glb"></a-asset-item>
     </a-assets>
 
     <a-assets>
-      <audio id="keeponSound" src="./keepon_sings.wav"></audio>
+      <audio id="childSound" src="./keepon_sings.wav"></audio>
     </a-assets>
 
     <!-- we use cors proxy to avoid cross-origin problems -->
@@ -58,7 +58,7 @@
       smoothTolerance=".01"
       smoothThreshold="5"
     >
-    <a-entity position="0 0 0" rotation="0 -90 0" scale="6 6 6" gltf-model="#keeponAnimation" sound="src: #keeponSound; volume: 10; loop: true" >
+    <a-entity position="0 0 0" rotation="0 -90 0" scale="10 10 10" gltf-model="#childAnimation" sound="src: #childSound; volume: 10; loop: true" >
     </a-entity>
 
     </a-nft>
