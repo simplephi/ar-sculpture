@@ -19,11 +19,11 @@
 
 
     <a-marker registerevents type="pattern" url="./pattern-transforming-lacquer-ware.patt" >
-      <a-entity position="0 0 0" rotation="0 0 0" scale="1 1 1" gltf-model="#transforming-lacquer-ware" animation-mixer>
+      <a-entity position="0 0 0" rotation="0 0 0" scale="1 1 1" gltf-model="#transforming-lacquer-ware">
       </a-entity>
     </a-marker>
 
-    <a-entity camera look-controls></a-entity>
+    <a-entity camera></a-entity>
 
   </a-scene>
 
@@ -31,28 +31,28 @@
 
 <script>
 //Detect marker found and lost
-// AFRAME.registerComponent('registerevents', {
-// 		init: function () {
-// 			const marker = this.el;
-//
-// 			marker.addEventListener("markerFound", ()=> {
-//
-//           var sceneEl = document.querySelector('a-entity');
-//           sceneEl.setAttribute('animation-mixer', '');
-//
-//         console.log('Marker Found');
-//
-// 			});
-//
-// 			marker.addEventListener("markerLost",() =>{
-//
-//         var sceneEl = document.querySelector('a-entity');
-//         sceneEl.removeAttribute('animation-mixer');
-//
-// 				console.log('Marker Lost');
-// 			});
-// 		},
-// 	});
+AFRAME.registerComponent('registerevents', {
+		init: function () {
+			const marker = this.el;
+
+			marker.addEventListener("markerFound", ()=> {
+
+          var sceneEl = document.querySelector('a-entity');
+          sceneEl.setAttribute('animation-mixer', '');
+
+        console.log('Marker Found');
+
+			});
+
+			marker.addEventListener("markerLost",() =>{
+
+        var sceneEl = document.querySelector('a-entity');
+        sceneEl.removeAttribute('animation-mixer');
+
+				console.log('Marker Lost');
+			});
+		},
+	});
 
 </script>
 
